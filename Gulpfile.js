@@ -35,11 +35,10 @@ var paths = {
     buildDir: 'build/js/',
   },
   styles: {
-    app: [
-      'app/styles/*.scss'
-    ],
-    buildDir: 'build/css'
-  },
+    src: './app/styles',
+    files: './app/styles/*.scss',
+    dest: './build/css/'
+  }
 
 };
 
@@ -76,48 +75,35 @@ gulp.task('uglify', ['preMin'],function(){
    .pipe(notify({ message: 'Build Done' }));
 });
 
-
-gulp.task('serve', function() {
-  //Set up your static fileserver, which serves files in the build dir
-  server.use(express.static(__dirname));
-  server.get("/", function(req, res) {
-    res.sendfile('app/index.html')
-  });
-  server.listen(serverport);
-
-  //Set up your livereload server
-  lrserver.listen(livereloadport);
-});
-
-/* Re-runs the "scripts" task every time a script file changes */
-gulp.task("watch", function() {
-  gulp.watch(["app/**/*", paths.buildDir + "/**/*"], ['build', 'reload']);
+gulp.task('watch', function() {
+  gulp.watch(['app/**/*', paths.buildDir + '/**/*'], ['build', 'reload']);
 });
 
 /* Converts sass files to css */
-gulp.task("styles", function () {
-  return gulp.src(paths.styles.app)
+gulp.task('styles', function () {
+  return gulp.src(paths.styles.files)
     .pipe(sass({
-      "outputStyle" : "compressed",
-      "errLogToConsole": true
+      outputStyle : 'compressed',
+      errLogToConsole: true,
+      includePaths : [paths.styles.files]
     }))
-    .pipe(gulp.dest(paths.styles.buildDir));
+    .pipe(gulp.dest(paths.styles.dest));
 });
 
 /* Uses the Karma test runner to run the Jasmine tests */
-gulp.task("test", function() {
+gulp.task('test', function() {
   return gulp.src(paths.tests)
     .pipe(karma({
-      configFile: "karma.conf.js",
-      action: "run"
+      configFile: 'karma.conf.js',
+      action: 'run'
     }))
-    .on("error", function(err) {
+    .on('error', function(err) {
       throw err;
     });
 });
 
 gulp.task('reload', function(){
-  gulp.src(paths.buildDir + "/**/*")
+  gulp.src(paths.buildDir + '/**/*')
    .pipe(refresh(lrserver));
 });
 
@@ -125,7 +111,7 @@ gulp.task('server', function() {
   //Set up your static fileserver, which serves files in the build dir
   server.use(express.static(__dirname));
   server.listen(serverport);
-  server.get("/", function(req, res) {
+  server.get('/', function(req, res) {
     res.sendfile('app/index.html')
   });
   //Set up your livereload server
