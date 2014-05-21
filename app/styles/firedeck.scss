@@ -23,6 +23,12 @@ $brand-warning: $bumble-bee;
 /* BASE STYLES
 ============================================================================= */
 html         { overflow-y:hidden; }
+body {
+  background: $azucar;
+  height: 100%;
+  width: 100%;
+  font-family: $font;
+}
 .page        {
     bottom:0;
     padding-top:200px;
@@ -38,8 +44,8 @@ html         { overflow-y:hidden; }
 
 /* PAGES
 ============================================================================= */
-.page-home      { background:#00D0BC; color:#00907c; }
-.page-about     { background:#E59400; color:#a55400; }
+.page-main      { background:$slate; color:$white; }
+.page-next     { background:$darkercar; color:$white; }
 .page-contact   { background:#ffa6bb; color:#9e0000; }
 
 /* ANIMATIONS
@@ -51,12 +57,12 @@ html         { overflow-y:hidden; }
 /* page specific animations ------------------------ */
 
 /* home -------------------------- */
-.page-home.ng-leave         {
+.page-animation.ng-leave         {
  -webkit-animation:slideOutLeft 0.5s both ease-in;
  -moz-animation:slideOutLeft 0.5s both ease-in;
  animation:slideOutLeft 0.5s both ease-in;
 }
-.page-home.ng-enter         {
+.page-animation.ng-enter         {
     -webkit-animation:scaleUp 0.5s both ease-in;
     -moz-animation:scaleUp 0.5s both ease-in;
     animation:scaleUp 0.5s both ease-in;
@@ -135,6 +141,20 @@ html         { overflow-y:hidden; }
 @-webkit-keyframes slideInRight {
     from    { -webkit-transform:translateX(100%); }
     to      { -webkit-transform: translateX(0); }
+}
+
+/* slide in from the bottom */
+@keyframes slideOutRight {
+    from      { transform: translateX(-100%); }
+    to        { transform: translateX(0); }
+}
+@-moz-keyframes slideOutRight {
+    from      { -moz-transform: translateX(-100%); }
+    to        { transform: translateX(0); }
+}
+@-webkit-keyframes slideOutRight {
+    from      { -webkit-transform: translateX(-100%); }
+    to        { transform: translateX(0); }
 }
 
 /* slide in from the bottom */
