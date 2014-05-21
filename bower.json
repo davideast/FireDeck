@@ -18,6 +18,12 @@
     "angular": "~1.2.16",
     "angular-route": "~1.2.16",
     "angular-animate": "~1.2.16",
-    "angular-cookies": "~1.2.16"
+    "angular-cookies": "~1.2.16",
+    "firebase": "~1.0.15",
+    "angularfire": "~0.7.1",
+    "firebase-simple-login": "~1.4.1"
+  },
+  "resolutions": {
+    "firebase-simple-login": "~1.4.1"
   }
 }
