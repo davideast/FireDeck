@@ -3,9 +3,9 @@
 
   var app = angular.module('fireDeck');
 
-  app.controller('DashCtrl', ['$scope', '$window', function($scope, $window) {
+  app.controller('DashCtrl', ['$scope', '$window', 'Decks', function($scope, $window, Decks) {
 
-    $scope.pageClass = 'page-about';
+    $scope.decks = Decks.$asArray();
 
   }]);
 

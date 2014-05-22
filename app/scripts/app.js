@@ -23,6 +23,18 @@
         templateUrl : 'app/views/login.html',
         controller  : 'LoginCtrl'
       })
+      .when('/dashboard', {
+        templateUrl : 'app/views/dashboard.html',
+        controller  : 'DashCtrl'
+      })
+      .when('/deck/:deckid', {
+        templateUrl : 'app/views/deck.html',
+        controller  : 'DeckCtrl'
+      })
+      .when('/deck/:deckid/slide-edit/:slideid', {
+        templateUrl : 'app/views/slide-edit.html',
+        controller  : 'SlideEditCtrl'
+      })
       .otherwise('/');
 
   }]);

@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Dashboard</h1>
+
+  <div class="deck" data-ng-repeat="deck in decks">
+
+    <a data-ng-href="/#/deck/{{ deck.$id }}">{{ deck.metadata.title }}</a>
+
+  </div>
+
+</div>

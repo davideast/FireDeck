@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Deck</h1>
+  <h3>{{ deck.metadata.title }}</h3>
+
+  <div class="text-left">
+
+    <button class="btn btn-success"
+            data-ng-click="newSlide()">New Slide</button>
+
+    <br />
+    <br />
+
+    <h4>Slides</h4>
+
+    <div class="slide" data-ng-repeat="slide in slides">
+
+      <a data-ng-href="/#/deck/{{deck.$id}}/slide-edit/{{slide.$id}}">{{ slide.title }}</a>
+
+    </div>
+    <div data-ng-if="!slides">
+      Create a slide
+    </div>
+  </div>
+</div>
