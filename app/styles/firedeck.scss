@@ -1,52 +1,75 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
 
-$azucar: #185689;
-$darkcar: #1b5e96;
-$darkercar: #154a75;
-$bumble-bee: #ffd641;
-$bumble-mid: #fedd7b;
-$bumble-dark: #c5a530;
+@font-face {
+  font-family: 'Gotham Thin';
+  src: url("font/Gotham-Thin.otf") format("opentype");
+}
 
-$slate: #322f31;
-$slate-dark: #154a75;
-$shale: #1d1d1e;
-
-$font: 'Open Sans';
+@font-face {
+  font-family: 'Gotham XLight';
+  src: url("font/Gotham-XLight.otf") format("opentype");
+}
 
 $white: #ffffff;
 $black: #000000;
 
-$brand-primary: $azucar;
-$brand-warning: $bumble-bee;
+$azucar: #185689;
+$darkcar: #1b5e96;
+$darkercar: #154a75;
+$bumble-bee: #ffd641;
+
+$slate: #322f31;
+$shale: #1d1d1e;
+$discs: #fec324;
+$keylime: #acfd5b;
+$tarheel: #50b1ff;
+$rebel: #ff6450;
+$pride: #b650ff;
+$cream: #fffbf3;
+
+$slate-dark: #154a75;
+$bumble-mid: #fedd7b;
+$bumble-dark: #c5a530;
+
+$font: 'Gotham Thin', 'Open Sans', Arial;
+
+$brand-primary: $tarheel;
+$brand-warning: $discs;
+$brand-danger: $rebel;
 
 
 /* BASE STYLES
 ============================================================================= */
-html         { overflow-y:hidden; }
+html {
+  overflow-y:hidden;
+}
+
 body {
-  background: $azucar;
+  background: $shale;
   height: 100%;
   width: 100%;
   font-family: $font;
 }
-.page        {
-    bottom:0;
-    padding-top:200px;
-    position:absolute;
-    text-align:center;
-    top:0;
-    width:100%;
+
+.page {
+  bottom:0;
+  padding-top:200px;
+  position:absolute;
+  text-align:center;
+  top:0;
+  width:100%;
+  color: $white;
 }
 
-.page h1    { font-size:60px; }
-.page a     { margin-top:50px; }
-#about      { color:#333; position:absolute; text-align:center; top:50px; width:100%; }
+.page h1 { font-size:60px; }
+.page a  { margin-top:50px; }
+#about   { color:#333; position:absolute; text-align:center; top:50px; width:100%; }
 
 /* PAGES
 ============================================================================= */
-.page-main      { background:$slate; color:$white; }
-.page-next     { background:$darkercar; color:$white; }
-.page-contact   { background:#ffa6bb; color:#9e0000; }
+.page-main { background:$white; }
+.page-next     { background:$slate; }
+.page-contact   { background:$discs; }
 
 /* ANIMATIONS
 ============================================================================= */
@@ -57,31 +80,31 @@ body {
 /* page specific animations ------------------------ */
 
 /* home -------------------------- */
-.page-animation.ng-leave         {
+.page-animation.ng-leave {
  -webkit-animation:slideOutLeft 0.5s both ease-in;
  -moz-animation:slideOutLeft 0.5s both ease-in;
  animation:slideOutLeft 0.5s both ease-in;
 }
-.page-animation.ng-enter         {
+.page-animation.ng-enter {
     -webkit-animation:scaleUp 0.5s both ease-in;
     -moz-animation:scaleUp 0.5s both ease-in;
     animation:scaleUp 0.5s both ease-in;
 }
 
 /* about ------------------------ */
-.page-about.ng-leave        {
+.page-about.ng-leave {
     -webkit-animation:slideOutLeft 0.5s both ease-in;
     -moz-animation:slideOutLeft 0.5s both ease-in;
     animation:slideOutLeft 0.5s both ease-in;
 }
-.page-about.ng-enter        {
+.page-about.ng-enter {
     -webkit-animation:slideInRight 0.5s both ease-in;
     -moz-animation:slideInRight 0.5s both ease-in;
     animation:slideInRight 0.5s both ease-in;
 }
 
 /* contact ---------------------- */
-.page-contact.ng-leave      {
+.page-contact.ng-leave {
     -webkit-transform-origin: 50% 50%;
     -webkit-animation: rotateOutNewspaper .5s both ease-in;
     -moz-transform-origin: 50% 50%;
@@ -89,45 +112,12 @@ body {
     transform-origin: 50% 50%;
     animation: rotateOutNewspaper .5s both ease-in;
 }
-.page-contact.ng-enter      {
+.page-contact.ng-enter {
     -webkit-animation:slideInUp 0.5s both ease-in;
     -moz-animation:slideInUp 0.5s both ease-in;
     animation:slideInUp 0.5s both ease-in;
 }
 
-/* rotate and fall */
-@-webkit-keyframes rotateFall {
-    0% { -webkit-transform: rotateZ(0deg); }
-    20% { -webkit-transform: rotateZ(10deg); -webkit-animation-timing-function: ease-out; }
-    40% { -webkit-transform: rotateZ(17deg); }
-    60% { -webkit-transform: rotateZ(16deg); }
-    100% { -webkit-transform: translateY(100%) rotateZ(17deg); }
-}
-@-moz-keyframes rotateFall {
-    0% { -moz-transform: rotateZ(0deg); }
-    20% { -moz-transform: rotateZ(10deg); -moz-animation-timing-function: ease-out; }
-    40% { -moz-transform: rotateZ(17deg); }
-    60% { -moz-transform: rotateZ(16deg); }
-    100% { -moz-transform: translateY(100%) rotateZ(17deg); }
-}
-@keyframes rotateFall {
-    0% { transform: rotateZ(0deg); }
-    20% { transform: rotateZ(10deg); animation-timing-function: ease-out; }
-    40% { transform: rotateZ(17deg); }
-    60% { transform: rotateZ(16deg); }
-    100% { transform: translateY(100%) rotateZ(17deg); }
-}
-
-/* scale up */
-@keyframes scaleUp {
-    from        { opacity: 0.3; -webkit-transform: scale(0.8); }
-}
-@-moz-keyframes scaleUp {
-    from        { opacity: 0.3; -moz-transform: scale(0.8); }
-}
-@-webkit-keyframes scaleUp {
-    from        { opacity: 0.3; -webkit-transform: scale(0.8); }
-}
 
 /* slide in from the right */
 @keyframes slideInRight {
@@ -180,15 +170,4 @@ body {
 }
 @-webkit-keyframes slideOutLeft {
     to      { -webkit-transform: translateX(-100%); }
-}
-
-/* rotate out newspaper */
-@-webkit-keyframes rotateOutNewspaper {
-    to { -webkit-transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
-}
-@-moz-keyframes rotateOutNewspaper {
-    to { -moz-transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
-}
-@keyframes rotateOutNewspaper {
-    to { transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
 }

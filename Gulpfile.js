@@ -29,6 +29,8 @@ var paths = {
       'app/scripts/app.js',
       'app/scripts/controllers/*.js',
       'app/scripts/directives/*.js',
+      'app/scripts/models/*.js',
+      'app/scripts/services/*.js',
     ],
     unminified: 'firedeck.js',
     minified: 'firedeck.min.js',

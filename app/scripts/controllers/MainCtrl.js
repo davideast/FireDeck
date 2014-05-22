@@ -3,12 +3,13 @@
 
   var app = angular.module('fireDeck');
 
-  app.controller('MainCtrl', ['$scope', '$window', function($scope, $window) {
+  app.controller('MainCtrl', function($scope, $window, SLIDES) {
     $scope.pageClass = 'page-main';
 
     $scope.next = function() {
       $window.location.href = '/#/next';
     };
-  }]);
+
+  });
 
 }(window, angular));
