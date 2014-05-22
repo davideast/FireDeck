@@ -9,10 +9,8 @@
 
     slideService.get = function getSlide(id) {
       var deferred = $q.defer();
-      console.log(id);
       ref.child(id).once('value', function(snapshot) {
         var value = snapshot.val();
-        console.log(value);
         deferred.resolve(value);
       });
       return deferred.promise;
