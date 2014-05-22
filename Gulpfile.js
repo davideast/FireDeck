@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     refresh = require('gulp-livereload')
     lrserver = require('tiny-lr')(),
     watch = require('gulp-watch'),
+    firebase = require('firebase'),
     livereloadport = 35729,
     serverport = 3000,
     sass = require("gulp-sass");
@@ -31,6 +32,7 @@ var paths = {
       'app/scripts/directives/*.js',
       'app/scripts/models/*.js',
       'app/scripts/services/*.js',
+      'app/scripts/refs/*.js',
     ],
     unminified: 'firedeck.js',
     minified: 'firedeck.min.js',
@@ -70,7 +72,7 @@ gulp.task('preMin', ['minify'],function(){
     .pipe(notify({ message: 'Min done' }));
 });
 
-gulp.task('uglify', ['preMin'],function(){
+gulp.task('uglify', ['minify'],function(){
   return gulp.src(paths.scripts.buildDir + paths.scripts.minified)
    .pipe(uglify())
    .pipe(gulp.dest(paths.scripts.buildDir))

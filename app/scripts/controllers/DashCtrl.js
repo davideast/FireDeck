@@ -3,7 +3,7 @@
 
   var app = angular.module('fireDeck');
 
-  app.controller('MainCtrl', ['$scope', '$window', function($scope, $window) {
+  app.controller('DashCtrl', ['$scope', '$window', function($scope, $window) {
 
     $scope.pageClass = 'page-about';
 
