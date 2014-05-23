@@ -33,8 +33,7 @@
             // Load html file with content which uses above content
             $('<div ng-include="MessageCtrl.html"></div>').appendTo('body');
             $('<div id="ctrl" ng-controller="ChatCtrl">' +
-                 '<h1>Messages</h1>' +
-                 '<hr />' +
+                 '<h1 class="underline">Messages</h1>' +
                  '<input type="text" class="add-message" ng-model="newMessage" />' +
                  '<button ng-click="add()" class="btn button-primary">Add</button>' +
                  '<div class="message adjust-left" ng-repeat="message in messages">' +

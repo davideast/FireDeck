@@ -58,6 +58,7 @@ body {
   top:0;
   width:100%;
   color: $white;
+  overflow-y: scroll;
 }
 
 .page h1 { font-size:60px; }
@@ -140,14 +141,14 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  width: 40%;
+  width: 45%;
   height: 100%;
   border-right: 10px solid $shale;
 }
 
 #render-container {
   height: 100%;
-  width: 60%;
+  width: 55%;
   position: absolute;
   right: 0;
   top: 0;
@@ -158,6 +159,7 @@ body {
     height: 100%;
     width: 100%;
     border: none;
+    overflow: scroll;
   }
 
 }
@@ -180,33 +182,6 @@ body {
     -webkit-animation:scaleUp 0.5s both ease-in;
     -moz-animation:scaleUp 0.5s both ease-in;
     animation:scaleUp 0.5s both ease-in;
-}
-
-/* about ------------------------ */
-.page-about.ng-leave {
-    -webkit-animation:slideOutLeft 0.5s both ease-in;
-    -moz-animation:slideOutLeft 0.5s both ease-in;
-    animation:slideOutLeft 0.5s both ease-in;
-}
-.page-about.ng-enter {
-    -webkit-animation:slideInRight 0.5s both ease-in;
-    -moz-animation:slideInRight 0.5s both ease-in;
-    animation:slideInRight 0.5s both ease-in;
-}
-
-/* contact ---------------------- */
-.page-contact.ng-leave {
-    -webkit-transform-origin: 50% 50%;
-    -webkit-animation: rotateOutNewspaper .5s both ease-in;
-    -moz-transform-origin: 50% 50%;
-    -moz-animation: rotateOutNewspaper .5s both ease-in;
-    transform-origin: 50% 50%;
-    animation: rotateOutNewspaper .5s both ease-in;
-}
-.page-contact.ng-enter {
-    -webkit-animation:slideInUp 0.5s both ease-in;
-    -moz-animation:slideInUp 0.5s both ease-in;
-    animation:slideInUp 0.5s both ease-in;
 }
 
 
@@ -263,41 +238,45 @@ body {
     to      { -webkit-transform: translateX(-100%); }
 }
 
-.realtime-1 {
-  // realtime-1
-  .add-message {
-    width: 30%;
-    height: 37px;
-    border: none;
-    vertical-align: top;
-    outline: none !important;
-    color: $black;
-    font-weight: bold;
+.add-message {
+  width: 75%;
+  padding-left: 20px;
+  height: 50px;
+  border: none;
+  vertical-align: top;
+  outline: none !important;
+  color: $black;
+  font-weight: bold;
+  + button {
+    height: 47px;
   }
-  .message {
+}
+.message {
 
-    margin: 20px auto;
-    width: 75%;
-    height: 50px;
-    padding: 0 20px;
+  margin: 22px auto;
+  width: 75%;
+  min-height: 57px;
+  padding: 20px;
 
-      &:nth-child(odd) {
-        background: $discs;
-        color: $shale;
-        text-align: left;
-      }
-
-      &:nth-child(even) {
-        background: $tarheel;
-        color: $white;
-        text-align: right;
-      }
-
-    span {
-      position: relative;
-      top: 22%;
-      font-size: 22px;
+    &:nth-child(odd) {
+      background: $discs;
+      color: $shale;
+      text-align: left;
     }
+
+    &:nth-child(even) {
+      background: $tarheel;
+      color: $white;
+      text-align: right;
+    }
+
+  span {
+    position: relative;
+    top: 22%;
+    font-size: 22px;
   }
+}
+
+.realtime-1 {
 
 }

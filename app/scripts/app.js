@@ -18,9 +18,9 @@
 
         }
       })
-      .when('/slide/:id', {
+      .when('/slide/:title', {
         templateUrl: function(params){
-          return 'app/slides/' + params.id + '.html';
+          return 'app/slides/' + params.title + '.html';
         },
         controller: 'SlideCtrl',
         // resolve: {
@@ -42,16 +42,14 @@
   app.constant('SLIDES', 'https://fire-deck.firebaseio.com/slides');
   app.constant('CURRENT', 'https://fire-deck.firebaseio.com/current');
 
-  app.run(function() {
+  app.run(function($window, Fb) {
     // global change page
-    // var currentRef = new Firebase(CURRENT);
-    // currentRef.on('value', function(snapshot) {
-    //   var value = snapshot.val();
-    //   if (value) {
-    //     $window.location.href = '/#/slide/' + value;
-    //   }
-    // });
-
+    Fb.child('current').on('value', function(snap) {
+      var value = snap.val();
+      if (value) {
+        $window.location.href = '/#/slide/' + value;
+      }
+    });
   });
 
 }(window, angular));
