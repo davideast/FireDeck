@@ -153,6 +153,13 @@ body {
   top: 0;
   vertical-align: top;
   background: $rebel;
+
+  #render-frame {
+    height: 100%;
+    width: 100%;
+    border: none;
+  }
+
 }
 
 /* ANIMATIONS

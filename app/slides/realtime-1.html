@@ -1,11 +1,6 @@
-<ng-ace code="1" load="loadCode"></ng-ace>
-<div id="render-container" ng-bind-html="text">
-  <ul>
-    <li>{{text}}</li>
-    <li ng-bind-html-unsafe="text"></li>
-  </ul>
-</div>
+<ng-ace location="1" auth="auth"></ng-ace>
+<div id="render-container">
 
-<script>
-  console.log('hi');
-</script>
+  <iframe id="render-frame" name="render-frame"></iframe>
+
+</div>

@@ -3,7 +3,7 @@
 
   var app = angular.module('fireDeck');
 
-  app.controller('SlideCtrl', function($scope, $window) {
+  app.controller('SlideCtrl', function($scope, $window, Auth, $q, $http) {
 
     $scope.pageClass = 'info';
 
@@ -13,9 +13,19 @@
 
     $scope.text = '<h1>Hi</h1>';
 
-    $scope.loadCode = function(code) {
-      return "alert('hi');";
+    $scope.auth = function(editor) {
+      var deferred = $q.defer();
+      var auth = Auth(function(error, user) {
+        if (user) {
+          deferred.resolve(true)
+        } else {
+          deferred.resolve(false);
+        }
+      });
+      return deferred.promise;
     };
+
+
 
   });
 
