@@ -25,6 +25,9 @@
       return deferred.promise;
     };
 
+    $scope.change = function(text) {
+      console.log(text);
+    };
 
 
   });

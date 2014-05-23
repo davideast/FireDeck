@@ -7,8 +7,6 @@
       restrict: 'E',
       scope: {
         location: '@',
-        load: '=',
-        code: '=',
         auth: '=',
         change: '='
       },
@@ -25,6 +23,8 @@
 
             if (!isAuthed) {
               editor.setReadOnly(true);
+
+
             }
 
           });
@@ -34,7 +34,6 @@
           session.setUseWorker(false);
           session.setMode("ace/mode/javascript");
 
-
           //// Create Firepad.
           var firepad = Firepad.fromACE(firepadRef, editor);
 
@@ -43,9 +42,16 @@
             if (firepad.isHistoryEmpty()) {
               firepad.setText(scope.load(scope.code));
             }
-            editor.getSession().on('change', function(e) {
-                // e.type, etc
-              console.log(firepad.getText());
+            editor.commands.addCommand({
+              name: 'myCommand',
+              bindKey: {win: 'Ctrl-K',  mac: 'Command-K'},
+              exec: function(editor) {
+               console.log('Cmd-K');
+               if (scope.change) {
+                 scope.change.call(this, firepad.getText());
+               }
+              },
+              readOnly: false // false if this command should not apply in readOnly mode
             });
           });
 
