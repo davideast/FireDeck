@@ -10,8 +10,10 @@
 				templateUrl : 'app/views/main.html',
 				controller  : 'MainCtrl'
 			})
-      .when('active/:deckid:/:slideid', {
-        templateUrl: 'app/views/next.html',
+      .when('/slide/:id', {
+        templateUrl: function(params){
+          return 'app/slides/' + params.id + '.html';
+        },
         controller: 'SlideCtrl',
         resolve: {
           data: function($route, SlideService) {
@@ -23,25 +25,13 @@
         templateUrl : 'app/views/login.html',
         controller  : 'LoginCtrl'
       })
-      .when('/dashboard', {
-        templateUrl : 'app/views/dashboard.html',
-        controller  : 'DashCtrl'
-      })
-      .when('/deck/:deckid', {
-        templateUrl : 'app/views/deck.html',
-        controller  : 'DeckCtrl'
-      })
-      .when('/deck/:deckid/slide-edit/:slideid', {
-        templateUrl : 'app/views/slide-edit.html',
-        controller  : 'SlideEditCtrl'
-      })
       .otherwise('/');
 
   }]);
 
   // set up constants
   app.constant('FBURL', 'https://fire-deck.firebaseio.com/');
-  app.constant('DECKS', 'https://fire-deck.firebaseio.com/decks');
+  app.constant('SLIDES', 'https://fire-deck.firebaseio.com/slides');
   app.constant('USERS', 'https://fire-deck.firebaseio.com/users');
 
   app.run(function() {
