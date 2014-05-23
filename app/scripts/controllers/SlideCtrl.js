@@ -3,9 +3,40 @@
 
   var app = angular.module('fireDeck');
 
-  app.controller('SlideCtrl', function($scope, $window, Auth, $q, $routeParams, Fb) {
-
+  app.controller('SlideCtrl', function($scope, $window, Auth, $q, $routeParams, Fb, $timeout) {
+    $scope.pageClass = 'code';
     $scope.order = {};
+    Auth(function(error, user) {
+      if (user) {
+        $timeout(function() {
+          $('<div id="control-bar"></div>').appendTo('body');
+          $('<button class="btn button-warning" style="position:absolute;top:0;right:60px;z-index:99999999">Prev</button>')
+            .on('click', function() {
+              Fb.child('order').child($scope.order.prev).once('value', function(snap) {
+                var value = snap.val();
+                //console.log('next - ' + value);
+                if (value) {
+                  Fb.child('current').set(value);
+                  //$scope.current = '/#/slide/' + snap.val();
+                }
+              });
+            })
+            .appendTo('#control-bar');
+          $('<button class="btn button-primary" style="position:absolute;top:0;right:0px;z-index:99999999">Next</button>')
+            .on('click', function() {
+              Fb.child('order').child($scope.order.next).once('value', function(snap) {
+                var value = snap.val();
+                //console.log('next - ' + value);
+                if (value) {
+                  Fb.child('current').set(value);
+                  //$scope.current = '/#/slide/' + snap.val();
+                }
+              });
+            })
+            .appendTo('#control-bar');
+        });
+      }
+    });
 
     Fb.child('order-index').child($routeParams.title).once('value', function(snap) {
       var value = parseInt(snap.val(), 10);
@@ -14,32 +45,6 @@
       $scope.order.next = value + 1;
     });
 
-    $('body').on('keydown', null, 'alt+right', function() {
-      // go to the next
-      Fb.child('order').child($scope.order.next).once('value', function(snap) {
-        var value = snap.val();
-        if (value) {
-          Fb.child('current').set(value);
-          //$scope.current = '/#/slide/' + snap.val();
-        }
-      });
-    });
-
-    $('body').on('keydown', null, 'alt+left', function() {
-      // go to the next
-      if ($scope.order.prev === 0) {
-        return;
-      }
-      Fb.child('order').child($scope.order.prev).once('value', function(snap) {
-        var value = snap.val();
-        if (value) {
-          Fb.child('current').set(value);
-          //$window.location.href = '/#/slide/' + snap.val();
-        }
-      });
-    });
-
-    $scope.pageClass = 'code';
 
     $scope.back = function() {
       $window.location.href = '/#/';
@@ -51,7 +56,7 @@
       var deferred = $q.defer();
       var auth = Auth(function(error, user) {
         if (user) {
-          deferred.resolve(true)
+          deferred.resolve(true);
         } else {
           deferred.resolve(false);
         }

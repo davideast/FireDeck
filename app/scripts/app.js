@@ -10,24 +10,11 @@
 				templateUrl : 'app/views/main.html',
 				controller  : 'MainCtrl'
 			})
-      .when('/render-frame', {
-        templateUrl: 'app/views/render-frame.html',
-        controller: function($scope) {
-
-          $scope.dynamicJS = {}; // whatever Im listening to;
-
-        }
-      })
       .when('/slide/:title', {
         templateUrl: function(params){
           return 'app/slides/' + params.title + '.html';
         },
-        controller: 'SlideCtrl',
-        // resolve: {
-        //   data: function($route, SlideService) {
-        //     return SlideService.get($route.current.params.id);
-        //   }
-        // }
+        controller: 'SlideCtrl'
       })
       .when('/login', {
         templateUrl : 'app/views/login.html',
@@ -46,6 +33,7 @@
     // global change page
     Fb.child('current').on('value', function(snap) {
       var value = snap.val();
+      console.log('current - ' + value);
       if (value) {
         $window.location.href = '/#/slide/' + value;
       }

@@ -11,7 +11,6 @@ var gulp = require('gulp'),
     refresh = require('gulp-livereload')
     lrserver = require('tiny-lr')(),
     watch = require('gulp-watch'),
-    firebase = require('firebase'),
     livereloadport = 35729,
     serverport = 3000,
     sass = require("gulp-sass");
@@ -120,6 +119,39 @@ gulp.task('server', function() {
   });
   //Set up your livereload server
   lrserver.listen(livereloadport);
+});
+
+gulp.task('order-slides', function() {
+  var Firebase = require('firebase');
+
+  var index = new Firebase('https://fire-deck.firebaseio.com/order-index');
+  var order = new Firebase('https://fire-deck.firebaseio.com/order');
+
+  var slideOrder = [
+    'intro',
+    'who',
+    'who-has-used-fb',
+    'who-knows-fb',
+    'platform',
+    'platform-2',
+    'platform-3',
+    'platform-4',
+    'live-coding-intro',
+    'realtime-1'
+  ];
+
+  var count = 1;
+  slideOrder.forEach(function(title) {
+    order.child(count).set(title);
+    index.child(title).set(count);
+    count++;
+  });
+
+  // fb.child('intro').set('1');
+  // fb.child('who').set('2');
+  // order.child('1').set('intro');
+  // order.child('2').set('who');
+
 });
 
 gulp.task('build', ['lint', 'concat', 'uglify', 'styles']);
