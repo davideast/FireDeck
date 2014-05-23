@@ -3,15 +3,20 @@
 
   var app = angular.module('fireDeck');
 
-  app.controller('SlideCtrl', function($scope, $window, data) {
+  app.controller('SlideCtrl', function($scope, $window) {
 
-    $scope.slide = data;
-
-    $scope.pageClass = 'page-next';
+    $scope.pageClass = 'info';
 
     $scope.back = function() {
       $window.location.href = '/#/';
     };
+
+    $scope.text = '<h1>Hi</h1>';
+
+    $scope.loadCode = function(code) {
+      return "alert('hi');";
+    };
+
   });
 
 }(window, angular));

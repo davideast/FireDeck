@@ -1,7 +1,7 @@
 /* global Firebase */
 (function(window, angular) {
 
-  var app = angular.module('fireDeck', ['ngRoute', 'ngAnimate', 'firebase']);
+  var app = angular.module('fireDeck', ['ngRoute', 'ngAnimate', 'ngSanitize', 'firebase']);
 
   app.config(['$routeProvider', function($routeProvider) {
 
@@ -15,11 +15,11 @@
           return 'app/slides/' + params.id + '.html';
         },
         controller: 'SlideCtrl',
-        resolve: {
-          data: function($route, SlideService) {
-            return SlideService.get($route.current.params.id);
-          }
-        }
+        // resolve: {
+        //   data: function($route, SlideService) {
+        //     return SlideService.get($route.current.params.id);
+        //   }
+        // }
       })
       .when('/login', {
         templateUrl : 'app/views/login.html',
@@ -32,7 +32,7 @@
   // set up constants
   app.constant('FBURL', 'https://fire-deck.firebaseio.com/');
   app.constant('SLIDES', 'https://fire-deck.firebaseio.com/slides');
-  app.constant('USERS', 'https://fire-deck.firebaseio.com/users');
+  app.constant('CURRENT', 'https://fire-deck.firebaseio.com/current');
 
   app.run(function() {
     // global change page

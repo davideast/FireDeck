@@ -22,7 +22,9 @@
     "firebase": "~1.0.15",
     "angularfire": "~0.7.1",
     "firebase-simple-login": "~1.4.1",
-    "bootstrap": "~3.1.1"
+    "bootstrap": "~3.1.1",
+    "angular-ui-ace": "bower",
+    "angular-sanitize": "~1.2.16"
   },
   "resolutions": {
     "firebase-simple-login": "~1.4.1"

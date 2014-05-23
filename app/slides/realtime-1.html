@@ -1,0 +1,11 @@
+<ng-ace code="1" load="loadCode"></ng-ace>
+<div id="render-container" ng-bind-html="text">
+  <ul>
+    <li>{{text}}</li>
+    <li ng-bind-html-unsafe="text"></li>
+  </ul>
+</div>
+
+<script>
+  console.log('hi');
+</script>

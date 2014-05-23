@@ -37,7 +37,6 @@ $brand-primary: $tarheel;
 $brand-warning: $discs;
 $brand-danger: $rebel;
 
-
 /* BASE STYLES
 ============================================================================= */
 html {
@@ -53,7 +52,7 @@ body {
 
 .page {
   bottom:0;
-  padding-top:200px;
+  padding-top:90px;
   position:absolute;
   text-align:center;
   top:0;
@@ -65,11 +64,96 @@ body {
 .page a  { margin-top:50px; }
 #about   { color:#333; position:absolute; text-align:center; top:50px; width:100%; }
 
+.btn {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  outline: none;
+}
+
+@mixin button-creator($color) {
+  background: $color;
+  box-shadow: 0px 3px 0px darken($color, 7%);
+  outline: none !important;
+
+  &:active {
+    box-shadow: 0px 1px 0px darken($color, 7%);
+    position: relative;
+    top: 2px;
+  }
+}
+
+.button-success { @include button-creator($pride); }
+.button-primary { @include button-creator($tarheel); }
+.button-warning { @include button-creator($discs); }
+.button-danger { @include button-creator($rebel); }
+.btn-huge {
+  height: 68px;
+  width: 158px;
+  font-size: 32px;
+}
+
 /* PAGES
 ============================================================================= */
-.page-main { background:$white; }
-.page-next     { background:$slate; }
-.page-contact   { background:$discs; }
+.info { background:$white; color: $shale; }
+.code   { background:$slate; }
+
+.big-plus {
+  font-size: 92px;
+  vertical-align: middle;
+}
+
+.mid-plus {
+  font-size: 72px;
+}
+
+/* SLIDES
+============================================================================= */
+
+.slide {
+  margin: 60px auto;
+
+  h1 {
+    margin-bottom: 60px;
+  }
+
+  &.slide-compact {
+    h1 {
+      margin-bottom: 60px;
+    }
+  }
+
+  .profile {
+    height: 200px;
+    width: 200px;
+    border: 2px solid $discs;
+  }
+
+  .adjust-left {
+    text-align: left;
+  }
+
+}
+
+
+#firepad-container {
+  text-align: left;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40%;
+  height: 100%;
+  border-right: 10px solid $shale;
+}
+
+#render-container {
+  height: 100%;
+  width: 60%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  vertical-align: top;
+  background: $rebel;
+}
 
 /* ANIMATIONS
 ============================================================================= */
