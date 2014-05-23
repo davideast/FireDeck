@@ -152,7 +152,7 @@ body {
   right: 0;
   top: 0;
   vertical-align: top;
-  background: $rebel;
+  background: $slate;
 
   #render-frame {
     height: 100%;
@@ -261,4 +261,43 @@ body {
 }
 @-webkit-keyframes slideOutLeft {
     to      { -webkit-transform: translateX(-100%); }
+}
+
+.realtime-1 {
+  // realtime-1
+  .add-message {
+    width: 30%;
+    height: 37px;
+    border: none;
+    vertical-align: top;
+    outline: none !important;
+    color: $black;
+    font-weight: bold;
+  }
+  .message {
+
+    margin: 20px auto;
+    width: 75%;
+    height: 50px;
+    padding: 0 20px;
+
+      &:nth-child(odd) {
+        background: $discs;
+        color: $shale;
+        text-align: left;
+      }
+
+      &:nth-child(even) {
+        background: $tarheel;
+        color: $white;
+        text-align: right;
+      }
+
+    span {
+      position: relative;
+      top: 22%;
+      font-size: 22px;
+    }
+  }
+
 }

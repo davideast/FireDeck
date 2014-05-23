@@ -3,7 +3,7 @@
 
   var app = angular.module('fireDeck');
 
-  app.controller('SlideCtrl', function($scope, $window, Auth, $q, $http) {
+  app.controller('SlideCtrl', function($scope, $window, Auth, $q, Fb) {
 
     $scope.pageClass = 'info';
 
@@ -25,8 +25,10 @@
       return deferred.promise;
     };
 
-    $scope.change = function(text) {
-      console.log(text);
+    $scope.change = function(config) {
+      console.log('post');
+      config.ref.child('post').set(config.pad.getText());
+      document.getElementById('render-frame').contentWindow.location.reload(true);
     };
 
 

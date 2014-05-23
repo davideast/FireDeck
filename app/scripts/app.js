@@ -10,6 +10,14 @@
 				templateUrl : 'app/views/main.html',
 				controller  : 'MainCtrl'
 			})
+      .when('/render-frame', {
+        templateUrl: 'app/views/render-frame.html',
+        controller: function($scope) {
+
+          $scope.dynamicJS = {}; // whatever Im listening to;
+
+        }
+      })
       .when('/slide/:id', {
         templateUrl: function(params){
           return 'app/slides/' + params.id + '.html';

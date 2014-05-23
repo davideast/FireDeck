@@ -18,13 +18,11 @@
           var firepadRef = Fb.child('code').child(scope.location);
           var editor = ace.edit("firepad-container");
           editor.setTheme("ace/theme/monokai");
-
+          editor.setFontSize(18);
           scope.auth(editor).then(function(isAuthed) {
 
             if (!isAuthed) {
               editor.setReadOnly(true);
-
-
             }
 
           });
@@ -46,9 +44,11 @@
               name: 'myCommand',
               bindKey: {win: 'Ctrl-K',  mac: 'Command-K'},
               exec: function(editor) {
-               console.log('Cmd-K');
                if (scope.change) {
-                 scope.change.call(this, firepad.getText());
+                 scope.change.call(this, {
+                   ref: firepadRef,
+                   pad: firepad
+                 });
                }
               },
               readOnly: false // false if this command should not apply in readOnly mode
