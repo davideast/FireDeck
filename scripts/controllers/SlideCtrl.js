@@ -24,10 +24,8 @@
             .on('click', function() {
               Fb.child('order').child($scope.order.next).once('value', function(snap) {
                 var value = snap.val();
-                //console.log('next - ' + value);
                 if (value) {
                   Fb.child('current').set(value);
-                  //$scope.current = '/#/slide/' + snap.val();
                 }
               });
             })
@@ -55,21 +53,14 @@
       return deferred.promise;
     };
 
-    Fb.child('code').child('1').child('post').on('value', function(snap) {
-      console.log('reload');
-        document.getElementById('render-frame')
+    Fb.child('code').child($routeParams.title).child('post').on('value', function(snap) {
+        document.getElementById($routeParams.title)
           .contentWindow.location.reload(true);
     });
 
     $scope.change = function(config) {
-      // config.ref.child('post').on('value', function(snap) {
-      //   console.log('reload iframe');
-      //   document.getElementById('render-frame')
-      //     .contentWindow.location.reload(true);
-      // });
       config.ref.child('post').set(config.pad.getText());
     };
-
 
   });
 

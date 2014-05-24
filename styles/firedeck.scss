@@ -140,7 +140,6 @@ body {
   top: 0;
   width: 45%;
   height: 100%;
-  border-right: 10px solid $shale;
 }
 
 #render-container {
@@ -152,7 +151,7 @@ body {
   vertical-align: top;
   background: $slate;
 
-  #render-frame {
+  .render-frame {
     height: 100%;
     width: 100%;
     border: none;

@@ -4,7 +4,7 @@
     <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/build/css/firedeck.css" rel="stylesheet" />
   </head>
-  <body class="page realtime-1">
+  <body class="page realtime-2">
 
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/firebase/firebase.js"></script>
@@ -15,7 +15,7 @@
     <script>
       (function() {
 
-          var codeRef = new Firebase('https://fire-deck.firebaseio.com/code/1/post');
+          var codeRef = new Firebase('https://fire-deck.firebaseio.com/code/realtime-2/post');
           var providers = {};
           angular.module('Foo', [], function($controllerProvider, $compileProvider, $provide) {
               providers = {
@@ -24,6 +24,7 @@
                   $provide: $provide
               };
           });
+
           codeRef.on('value', function(snapshot) {
             eval(snapshot.val());
             angular.bootstrap($('body'), ['Foo']);
@@ -31,12 +32,11 @@
             // This is just so we don't re-register anything
             var queueLen = angular.module('Foo')._invokeQueue.length;
             // Load html file with content which uses above content
-            $('<div ng-include="MessageCtrl.html"></div>').appendTo('body');
-            $('<div id="ctrl" ng-controller="ChatCtrl">' +
-                 '<h1 class="underline">Messages</h1>' +
+            $('<div id="ctrl" ng-controller="MsgCtrl">' +
+                 '<h1>Messages 2</h1>' +
                  '<input type="text" class="add-message" ng-model="newMessage" />' +
                  '<button ng-click="add()" class="btn button-primary">Add</button>' +
-                 '<div class="message adjust-left" ng-repeat="message in messages">' +
+                 '<div class="message adjust-left" ng-repeat="message in messages track by $index">' +
                  '<span>{{ message }}</span>' +
                  '</div>' +
             '</div>').appendTo('body');

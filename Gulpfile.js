@@ -137,7 +137,8 @@ gulp.task('order-slides', function() {
     'platform-3',
     'platform-4',
     'live-coding-intro',
-    'realtime-1'
+    'realtime-1',
+    'realtime-2'
   ];
 
   var count = 1;
@@ -146,7 +147,6 @@ gulp.task('order-slides', function() {
     index.child(title).set(count);
     count++;
   });
-
 });
 
 gulp.task('build', ['lint', 'concat', 'uglify', 'styles']);
