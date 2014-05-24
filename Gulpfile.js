@@ -35,7 +35,7 @@ var paths = {
     ],
     unminified: 'firedeck.js',
     minified: 'firedeck.min.js',
-    buildDir: 'app/build/js/',
+    buildDir: 'build/js/',
   },
   styles: {
     src: 'styles',
@@ -130,8 +130,8 @@ gulp.task('order-slides', function() {
   var slideOrder = [
     'intro',
     'who',
-    'who-has-used-fb',
     'who-knows-fb',
+    'who-has-used-fb',
     'platform',
     'platform-2',
     'platform-3',
@@ -146,11 +146,6 @@ gulp.task('order-slides', function() {
     index.child(title).set(count);
     count++;
   });
-
-  // fb.child('intro').set('1');
-  // fb.child('who').set('2');
-  // order.child('1').set('intro');
-  // order.child('2').set('who');
 
 });
 

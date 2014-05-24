@@ -14,10 +14,8 @@
             .on('click', function() {
               Fb.child('order').child($scope.order.prev).once('value', function(snap) {
                 var value = snap.val();
-                //console.log('next - ' + value);
                 if (value) {
                   Fb.child('current').set(value);
-                  //$scope.current = '/#/slide/' + snap.val();
                 }
               });
             })
@@ -45,13 +43,6 @@
       $scope.order.next = value + 1;
     });
 
-
-    $scope.back = function() {
-      $window.location.href = '/#/';
-    };
-
-    $scope.text = '<h1>Hi</h1>';
-
     $scope.auth = function(editor) {
       var deferred = $q.defer();
       var auth = Auth(function(error, user) {
@@ -64,10 +55,19 @@
       return deferred.promise;
     };
 
+    Fb.child('code').child('1').child('post').on('value', function(snap) {
+      console.log('reload');
+        document.getElementById('render-frame')
+          .contentWindow.location.reload(true);
+    });
+
     $scope.change = function(config) {
+      // config.ref.child('post').on('value', function(snap) {
+      //   console.log('reload iframe');
+      //   document.getElementById('render-frame')
+      //     .contentWindow.location.reload(true);
+      // });
       config.ref.child('post').set(config.pad.getText());
-      document.getElementById('render-frame')
-        .contentWindow.location.reload(true);
     };
 
 
