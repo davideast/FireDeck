@@ -73,13 +73,10 @@ body {
 
 @mixin button-creator($color) {
   background: $color;
-  box-shadow: 0px 3px 0px darken($color, 7%);
   outline: none !important;
 
   &:active {
-    box-shadow: 0px 1px 0px darken($color, 7%);
-    position: relative;
-    top: 2px;
+    background: darken($color, 7%);
   }
 }
 

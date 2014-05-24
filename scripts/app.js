@@ -7,17 +7,17 @@
 
     $routeProvider
 			.when('/', {
-				templateUrl : 'app/views/main.html',
+				templateUrl : '../views/main.html',
 				controller  : 'MainCtrl'
 			})
       .when('/slide/:title', {
         templateUrl: function(params){
-          return 'app/slides/' + params.title + '.html';
+          return '../slides/' + params.title + '.html';
         },
         controller: 'SlideCtrl'
       })
       .when('/login', {
-        templateUrl : 'app/views/login.html',
+        templateUrl : '../views/login.html',
         controller  : 'LoginCtrl'
       })
       .otherwise('/');
@@ -33,7 +33,6 @@
     // global change page
     Fb.child('current').on('value', function(snap) {
       var value = snap.val();
-      console.log('current - ' + value);
       if (value) {
         $window.location.href = '/#/slide/' + value;
       }

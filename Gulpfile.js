@@ -26,21 +26,21 @@ var paths = {
   buildDir: 'build/',
   scripts: {
     app: [
-      'app/scripts/app.js',
-      'app/scripts/controllers/*.js',
-      'app/scripts/directives/*.js',
-      'app/scripts/models/*.js',
-      'app/scripts/services/*.js',
-      'app/scripts/refs/*.js',
+      'scripts/app.js',
+      'scripts/controllers/*.js',
+      'scripts/directives/*.js',
+      'scripts/models/*.js',
+      'scripts/services/*.js',
+      'scripts/refs/*.js',
     ],
     unminified: 'firedeck.js',
     minified: 'firedeck.min.js',
-    buildDir: 'build/js/',
+    buildDir: 'app/build/js/',
   },
   styles: {
-    src: './app/styles',
-    files: './app/styles/*.scss',
-    dest: './build/css/'
+    src: 'styles',
+    files: 'styles/*.scss',
+    dest: 'build/css/'
   }
 
 };
@@ -79,7 +79,7 @@ gulp.task('uglify', ['minify'],function(){
 });
 
 gulp.task('watch', function() {
-  gulp.watch(['app/**/*', paths.buildDir + '/**/*'], ['build', 'reload']);
+  gulp.watch(['scripts/**/*', 'slides/**/*', 'styles/**/*', 'views/**/*'], ['build', 'reload']);
 });
 
 /* Converts sass files to css */
@@ -115,7 +115,7 @@ gulp.task('server', function() {
   server.use(express.static(__dirname));
   server.listen(serverport);
   server.get('/', function(req, res) {
-    res.sendfile('app/index.html')
+    res.sendfile('index.html')
   });
   //Set up your livereload server
   lrserver.listen(livereloadport);
