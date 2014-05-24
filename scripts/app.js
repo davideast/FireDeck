@@ -38,16 +38,6 @@
       }
     });
 
-    // Fb.child('reset').on('value', function(snap) {
-    //   var value = snap.val();
-    //   if (value) {
-    //     console.log(count);
-    //     if (count < 1) {
-    //       $window.location.reload();
-    //     }
-    //     count++;
-    //   }
-    // });
   });
 
 }(window, angular));

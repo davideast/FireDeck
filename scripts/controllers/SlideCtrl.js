@@ -6,6 +6,13 @@
   app.controller('SlideCtrl', function($scope, $window, Auth, $q, $routeParams, Fb, $timeout, $rootScope) {
     $scope.pageClass = 'code';
     $scope.order = {};
+    $scope.reloads = 0;
+
+    if ($routeParams.title === 'live-coding') {
+      console.log('live-coding');
+      console.log($window.location);
+    }
+
     Auth(function(error, user) {
       if (user) {
         $timeout(function() {
@@ -58,11 +65,16 @@
 
     Fb.child('code').child($routeParams.title).child('post').on('value', function(snap) {
 
-        var iframe = document.getElementById($routeParams.title);
+        if ($scope.reloads > 0) {
+          var iframe = document.getElementById($routeParams.title + '-frame');
 
-        if (iframe) {
-          iframe.contentWindow.location.reload(true);
+          if (iframe) {
+            iframe.contentWindow.location.reload();
+            console.log('reload');
+          }
         }
+
+        $scope.reloads++;
 
     });
 

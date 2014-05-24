@@ -10,13 +10,12 @@
         auth: '=',
         change: '='
       },
-      template: '<div id="firepad-container"></div>',
+      template: '<div id="{{location}}" class="firepad-container"></div>',
       link: function(scope, element, attrs) {
-        var firepad = null;
         $timeout(function() {
 
           var firepadRef = Fb.child('code').child(scope.location);
-          var editor = ace.edit("firepad-container");
+          var editor = ace.edit(scope.location);
           editor.setTheme("ace/theme/monokai");
           editor.setFontSize(18);
           scope.auth(editor).then(function(isAuthed) {
@@ -45,23 +44,28 @@
               bindKey: {win: 'Ctrl-K',  mac: 'Command-K'},
               exec: function(editor) {
                if (scope.change) {
+                console.log('Ctrl-K');
                  scope.change.call(this, {
                    ref: firepadRef,
                    pad: firepad
                  });
+                // var iframe = document.getElementById(scope.location + '-frame');
+                // if (iframe) {
+                //   iframe.contentWindow.location.reload();
+                // }
                }
               },
               readOnly: false // false if this command should not apply in readOnly mode
             });
           });
 
-          $rootScope.$on('firepad:remove', function(data) {
-
-            editor.destroy();
-            //firepad.dispose();
-            //this.Firebase.dispose();
-            element.remove();
-          });
+          // $rootScope.$on('firepad:remove', function(data) {
+          //
+          //   editor.destroy();
+          //   //firepad.dispose();
+          //   //this.Firebase.dispose();
+          //   element.remove();
+          // });
 
         });
 
