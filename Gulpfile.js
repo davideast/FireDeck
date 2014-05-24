@@ -138,7 +138,9 @@ gulp.task('order-slides', function() {
     'platform-4',
     'live-coding-intro',
     'realtime-1',
-    'realtime-2'
+    'intro',
+    'realtime-2',
+    'realtime-3'
   ];
 
   var count = 1;

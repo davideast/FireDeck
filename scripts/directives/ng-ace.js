@@ -2,7 +2,7 @@
 
   var app = angular.module('fireDeck');
 
-  app.directive('ngAce', ['$timeout', 'Fb', function($timeout, Fb) {
+  app.directive('ngAce', ['$timeout', 'Fb', '$rootScope', function($timeout, Fb, $rootScope) {
     return {
       restrict: 'E',
       scope: {
@@ -12,7 +12,7 @@
       },
       template: '<div id="firepad-container"></div>',
       link: function(scope, element, attrs) {
-
+        var firepad = null;
         $timeout(function() {
 
           var firepadRef = Fb.child('code').child(scope.location);
@@ -53,6 +53,14 @@
               },
               readOnly: false // false if this command should not apply in readOnly mode
             });
+          });
+
+          $rootScope.$on('firepad:remove', function(data) {
+
+            editor.destroy();
+            //firepad.dispose();
+            //this.Firebase.dispose();
+            element.remove();
           });
 
         });

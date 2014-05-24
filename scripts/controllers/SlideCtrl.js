@@ -3,7 +3,7 @@
 
   var app = angular.module('fireDeck');
 
-  app.controller('SlideCtrl', function($scope, $window, Auth, $q, $routeParams, Fb, $timeout) {
+  app.controller('SlideCtrl', function($scope, $window, Auth, $q, $routeParams, Fb, $timeout, $rootScope) {
     $scope.pageClass = 'code';
     $scope.order = {};
     Auth(function(error, user) {
@@ -15,6 +15,7 @@
               Fb.child('order').child($scope.order.prev).once('value', function(snap) {
                 var value = snap.val();
                 if (value) {
+                  $rootScope.$broadcast('firepad:remove', true);
                   Fb.child('current').set(value);
                 }
               });
@@ -22,9 +23,11 @@
             .appendTo('#control-bar');
           $('<button class="btn button-primary" style="position:absolute;top:0;right:0px;z-index:99999999">Next</button>')
             .on('click', function() {
+
               Fb.child('order').child($scope.order.next).once('value', function(snap) {
                 var value = snap.val();
                 if (value) {
+                  $rootScope.$broadcast('firepad:remove', true);
                   Fb.child('current').set(value);
                 }
               });
@@ -54,8 +57,13 @@
     };
 
     Fb.child('code').child($routeParams.title).child('post').on('value', function(snap) {
-        document.getElementById($routeParams.title)
-          .contentWindow.location.reload(true);
+
+        var iframe = document.getElementById($routeParams.title);
+
+        if (iframe) {
+          iframe.contentWindow.location.reload(true);
+        }
+
     });
 
     $scope.change = function(config) {

@@ -29,7 +29,7 @@
   app.constant('SLIDES', 'https://fire-deck.firebaseio.com/slides');
   app.constant('CURRENT', 'https://fire-deck.firebaseio.com/current');
 
-  app.run(function($window, Fb) {
+  app.run(function($window, Fb, $rootScope) {
     // global change page
     Fb.child('current').on('value', function(snap) {
       var value = snap.val();
@@ -37,6 +37,17 @@
         $window.location.href = '/#/slide/' + value;
       }
     });
+
+    // Fb.child('reset').on('value', function(snap) {
+    //   var value = snap.val();
+    //   if (value) {
+    //     console.log(count);
+    //     if (count < 1) {
+    //       $window.location.reload();
+    //     }
+    //     count++;
+    //   }
+    // });
   });
 
 }(window, angular));
