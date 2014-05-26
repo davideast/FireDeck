@@ -12,6 +12,7 @@
       },
       template: '<div id="{{location}}" class="firepad-container"></div>',
       link: function(scope, element, attrs) {
+
         $timeout(function() {
 
           var firepadRef = Fb.child('code').child(scope.location);
