@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title>Rendering in an iframe</title>
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/build/css/firedeck.css" rel="stylesheet" />
+  </head>
+  <body class="page data-once">
+
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/firebase/firebase.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/bower_components/angularfire/angularfire.exp.js"></script>
+    <script>
+      (function() {
+
+          var codeRef = new Firebase('https://fire-deck.firebaseio.com/code/data-once/post');
+          var providers = {};
+          angular.module('Federer', [], function($controllerProvider, $compileProvider, $provide) {
+              providers = {
+                  $controllerProvider: $controllerProvider,
+                  $compileProvider: $compileProvider,
+                  $provide: $provide
+              };
+          });
+
+          codeRef.on('value', function(snapshot) {
+            eval(snapshot.val());
+            angular.bootstrap($('body'), ['Federer']);
+            // Store our _invokeQueue length before loading our controllers/directives/services
+            // This is just so we don't re-register anything
+            var queueLen = angular.module('Federer')._invokeQueue.length;
+            // Load html file with content which uses above content
+            $('<div id="ctrl" ng-controller="RivalsCtrl">' +
+                 '<h2>Federer Rivals</h2>' +
+                 '<select ng-model="selectedRival" ng-options="o as o for o in rivals"><select>' +
+                 '</div>' +
+            '</div>').appendTo('body');
+            // Register the controls/directives/services we just loaded
+            var queue = angular.module('Federer')._invokeQueue;
+            for(var i=queueLen;i<queue.length;i++) {
+                var call = queue[i];
+                // call is in the form [providerName, providerFunc, providerArguments]
+                var provider = providers[call[0]];
+                if(provider) {
+                    // e.g. $controllerProvider.register("Ctrl", function() { ... })
+                    provider[call[1]].apply(provider, call[2]);
+                }
+            }
+
+            // compile the new element
+            $('body').injector().invoke(function($compile, $rootScope) {
+                $compile($('#ctrl'))($rootScope);
+                $rootScope.$apply();
+            });
+          });
+
+      }());
+    </script>
+  </body>
+</html>

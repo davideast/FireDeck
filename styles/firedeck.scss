@@ -59,6 +59,11 @@ body {
   width:100%;
   color: $white;
   overflow-y: scroll;
+
+  &.sm-top {
+    padding-top: 20px;
+  }
+
 }
 
 .page h1 { font-size:60px; }
@@ -177,13 +182,13 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  width: 45%;
+  width: 55%;
   height: 100%;
 }
 
 #render-container {
   height: 100%;
-  width: 55%;
+  width: 45%;
   position: absolute;
   right: 0;
   top: 0;
@@ -320,4 +325,33 @@ body {
     top: 22%;
     font-size: 22px;
   }
+
+  &.message-half {
+    width: 45%;
+    display: inline-block;
+    margin: 10px;
+  }
+}
+
+.roger-profile {
+  color: $cream;
+  background: $shale;
+  width: 90%;
+  margin: 0 auto;
+  padding: 30px;
+  //border-bottom: 2px solid $cream;
+
+  .profile-image {
+    margin-bottom: 24px;
+  }
+
+  .btn-almost-block {
+    width: 94%;
+  }
+
+  .message {
+    text-align: center;
+    font-size: 20px;
+  }
+
 }

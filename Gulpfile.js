@@ -127,19 +127,25 @@ gulp.task('order-slides', function() {
   var index = new Firebase('https://fire-deck.firebaseio.com/order-index');
   var order = new Firebase('https://fire-deck.firebaseio.com/order');
 
+  index.remove();
+  order.remove();
+
   var slideOrder = [
     'intro',
     'who',
     'hardest-part',
-    'traditional-arch',
-    'crud-code',
+    'prototype-stage',
+    'backend-stage',
+    'production-stage',
     'better-way',
     'who-knows-fb',
     'who-has-used-fb',
     'platform',
     'api',
     'live-coding-intro',
-    'basic-chat'
+    'data-in-out',
+    'federer-facts',
+    'data-once'
   ];
 
   var count = 1;

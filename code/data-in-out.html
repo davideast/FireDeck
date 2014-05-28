@@ -3,8 +3,16 @@
     <title>Rendering in an iframe</title>
     <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/build/css/firedeck.css" rel="stylesheet" />
+    <style type="text/css" media="screen">
+      #c {
+        border-bottom: 2px solid #fff;
+      }
+      .arena-items {
+        height: 100%;
+      }
+    </style>
   </head>
-  <body class="page data-in-out">
+  <body class="page sm-top data-in-out">
 
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/firebase/firebase.js"></script>
@@ -17,35 +25,56 @@
 
           var codeRef = new Firebase('https://fire-deck.firebaseio.com/code/data-in-out/post');
           var providers = {};
-          angular.module('Foo', [], function($controllerProvider, $compileProvider, $provide) {
+          angular.module('Federer', [], function($controllerProvider, $compileProvider, $provide) {
               providers = {
                   $controllerProvider: $controllerProvider,
                   $compileProvider: $compileProvider,
                   $provide: $provide
               };
           });
-          angular.module('Foo')
-            .factory('BouncingBall', function() {
-              
-            });
 
           codeRef.on('value', function(snapshot) {
             eval(snapshot.val());
-            angular.bootstrap($('body'), ['Foo']);
+            angular.bootstrap($('body'), ['Federer']);
             // Store our _invokeQueue length before loading our controllers/directives/services
             // This is just so we don't re-register anything
-            var queueLen = angular.module('Foo')._invokeQueue.length;
+            var queueLen = angular.module('Federer')._invokeQueue.length;
             // Load html file with content which uses above content
-            $('<div id="ctrl" ng-controller="CanvasCtrl">' +
-                 '<h1>Messages</h1>' +
-                 '<input type="text" class="add-message" ng-model="newMessage" />' +
-                 '<button ng-click="add()" class="btn button-primary">Add</button>' +
-                 '<div class="message adjust-left" ng-repeat="message in messages track by $index">' +
-                 '<span>{{ message }}</span>' +
-                 '</div>' +
+            $('<div id="ctrl" ng-controller="FedererCtrl">' +
+
+              '<div class="roger-profile">' +
+              '<h3>{{ roger.name }}</h3>' +
+              '<div class="profile-image">' +
+              '<img src="/slides/images/roger-federer.jpg" alt="Roger Federer" height="280" width="240" />' +
+              '</div>' +
+
+              '<div class="roger-info">' +
+
+              '<div class="message message-half">' +
+              'Wimbledons' +
+              '</div>' +
+
+              '<div class="message message-half">' +
+              '{{ roger.wimbledons }}'  +
+              '</div>' +
+
+              '<div class="message message-half">' +
+              'US Opens' +
+              '</div>' +
+
+              '<div class="message message-half">' +
+              '{{ roger.usOpens }}'  +
+              '</div>' +
+
+              '<br /><br />' +
+
+              '<button ng-click="updateRoger()" class="btn btn-lg btn-almost-block button-primary">Update Roger</button>' +
+
+              '</div>' +
+              '</div>' +
             '</div>').appendTo('body');
             // Register the controls/directives/services we just loaded
-            var queue = angular.module('Foo')._invokeQueue;
+            var queue = angular.module('Federer')._invokeQueue;
             for(var i=queueLen;i<queue.length;i++) {
                 var call = queue[i];
                 // call is in the form [providerName, providerFunc, providerArguments]
