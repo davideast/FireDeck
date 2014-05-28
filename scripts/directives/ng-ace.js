@@ -40,8 +40,18 @@
             if (firepad.isHistoryEmpty()) {
               firepad.setText(scope.load(scope.code));
             }
+
+            Code.child(scope.location).child('fullscreen').on('value', function(snap) {
+              var $container = $('#' + scope.location);
+              if (snap.val()) {
+                $container.addClass('full');
+              } else {
+                $container.removeClass('full');
+              }
+            })
+
             editor.commands.addCommand({
-              name: 'myCommand',
+              name: 'Reload',
               bindKey: {win: 'Ctrl-K',  mac: 'Command-K'},
               exec: function(editor) {
                if (scope.change) {
@@ -53,6 +63,18 @@
               },
               readOnly: false // false if this command should not apply in readOnly mode
             });
+
+            editor.commands.addCommand({
+              name: 'FullScreen',
+              bindKey: {win: 'Ctrl-Y',  mac: 'Command-Y'},
+              exec: function(editor) {
+                var isFull = $('#' + scope.location).hasClass('full');
+                var fsRef = Code.child(scope.location).child('fullscreen');
+                fsRef.set(!isFull);
+              },
+              readOnly: false // false if this command should not apply in readOnly mode
+            });
+
           });
 
         });

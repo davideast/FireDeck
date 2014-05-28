@@ -184,6 +184,13 @@ body {
   top: 0;
   width: 55%;
   height: 100%;
+
+  &.full {
+    width: 100% !important;
+    position: absolute !important;
+    z-index: 999999 !important;
+  }
+  
 }
 
 #render-container {
