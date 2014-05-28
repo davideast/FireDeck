@@ -80,6 +80,15 @@ body {
   }
 }
 
+@mixin colored-text($color) {
+  background: $color;
+  outline: none !important;
+
+  &:active {
+    background: darken($color, 7%);
+  }
+}
+
 .button-success { @include button-creator($pride); }
 .button-primary { @include button-creator($tarheel); }
 .button-warning { @include button-creator($discs); }
@@ -88,6 +97,19 @@ body {
   height: 68px;
   width: 158px;
   font-size: 32px;
+}
+
+.text-tarheel {
+  color: $tarheel;
+}
+.text-discs {
+  color: $discs;
+}
+.text-pride {
+  color: $pride;
+}
+.text-rebel {
+  color: $rebel;
 }
 
 /* PAGES
@@ -132,6 +154,23 @@ body {
 
 }
 
+/* PLATFORM SLIDE
+============================================================================= */
+
+.reasons {
+  text-align: left;
+  list-style-type: none;
+
+  li {
+    font-size: 42px;
+
+    &:nth-child(odd) {
+      color: $discs;
+    }
+  }
+
+}
+
 
 .firepad-container {
   text-align: left;
@@ -167,17 +206,27 @@ body {
 .page.ng-enter  { z-index:8888; }
 
 /* page specific animations ------------------------ */
+.info.ng-leave        {
+    -webkit-animation:slideOutLeft 0.5s both ease-in;
+	-moz-animation:slideOutLeft 0.5s both ease-in;
+	animation:slideOutLeft 0.5s both ease-in;
+}
+.info.ng-enter 		{
+    -webkit-animation:slideInRight 0.5s both ease-in;
+	-moz-animation:slideInRight 0.5s both ease-in;
+	animation:slideInRight 0.5s both ease-in;
+}
 
 /* home -------------------------- */
 .page-animation.ng-leave {
- -webkit-animation:slideOutLeft 0.5s both ease-in;
- -moz-animation:slideOutLeft 0.5s both ease-in;
- animation:slideOutLeft 0.5s both ease-in;
+  -webkit-animation:slideOutLeft 0.5s both ease-in;
+  -moz-animation:slideOutLeft 0.5s both ease-in;
+  animation:slideOutLeft 0.5s both ease-in;
 }
 .page-animation.ng-enter {
-    -webkit-animation:scaleUp 0.5s both ease-in;
-    -moz-animation:scaleUp 0.5s both ease-in;
-    animation:scaleUp 0.5s both ease-in;
+  -webkit-animation:slideInRight 0.5s both ease-in;
+  -moz-animation:slideInRight 0.5s both ease-in;
+  animation:slideInRight 0.5s both ease-in;
 }
 
 
@@ -271,8 +320,4 @@ body {
     top: 22%;
     font-size: 22px;
   }
-}
-
-.realtime-1 {
-
 }

@@ -4,7 +4,7 @@
     <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/build/css/firedeck.css" rel="stylesheet" />
   </head>
-  <body class="page realtime-1">
+  <body class="page basic-chat">
 
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/firebase/firebase.js"></script>
@@ -15,7 +15,7 @@
     <script>
       (function() {
 
-          var codeRef = new Firebase('https://fire-deck.firebaseio.com/code/realtime-1/post');
+          var codeRef = new Firebase('https://fire-deck.firebaseio.com/code/basic-chat/post');
           var providers = {};
           angular.module('Foo', [], function($controllerProvider, $compileProvider, $provide) {
               providers = {

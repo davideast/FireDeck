@@ -15,6 +15,10 @@
       $scope.demoUrl = '/code/' + $scope.demo + '.html';
     }
 
+    if ($scope.title === '') {
+      $scope.pageClass = 'info';
+    }
+
     Auth(function(error, user) {
       if (user) {
         $timeout(function() {
@@ -70,7 +74,6 @@
 
           if (iframe) {
             iframe.contentWindow.location.reload();
-            console.log('reload');
           }
         }
 

@@ -130,16 +130,16 @@ gulp.task('order-slides', function() {
   var slideOrder = [
     'intro',
     'who',
+    'hardest-part',
+    'traditional-arch',
+    'crud-code',
+    'better-way',
     'who-knows-fb',
     'who-has-used-fb',
     'platform',
-    'platform-2',
-    'platform-3',
-    'platform-4',
+    'api',
     'live-coding-intro',
-    'realtime-1',
-    'realtime-2',
-    'realtime-3'
+    'basic-chat'
   ];
 
   var count = 1;

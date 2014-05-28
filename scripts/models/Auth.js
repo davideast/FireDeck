@@ -1,7 +1,7 @@
 (function(window, angular) {
 
   angular.module('fireDeck')
-    .factory('Auth', ['Fb', '$q', function(Fb, $q) {
+    .factory('Auth', ['Fb', function(Fb) {
 
       function setAuth(cb) {
         var auth = new FirebaseSimpleLogin(Fb, function(error, user) {
