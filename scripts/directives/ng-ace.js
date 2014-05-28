@@ -2,7 +2,7 @@
 
   var app = angular.module('fireDeck');
 
-  app.directive('ngAce', ['$timeout', 'Fb', '$rootScope', function($timeout, Fb, $rootScope) {
+  app.directive('ngAce', ['$timeout', 'Code', function($timeout, Code) {
     return {
       restrict: 'E',
       scope: {
@@ -15,7 +15,7 @@
 
         $timeout(function() {
 
-          var firepadRef = Fb.child('code').child(scope.location);
+          var firepadRef = Code.child(scope.location);
           var editor = ace.edit(scope.location);
           editor.setTheme("ace/theme/monokai");
           editor.setFontSize(18);
@@ -45,28 +45,15 @@
               bindKey: {win: 'Ctrl-K',  mac: 'Command-K'},
               exec: function(editor) {
                if (scope.change) {
-                console.log('Ctrl-K');
                  scope.change.call(this, {
                    ref: firepadRef,
                    pad: firepad
                  });
-                // var iframe = document.getElementById(scope.location + '-frame');
-                // if (iframe) {
-                //   iframe.contentWindow.location.reload();
-                // }
                }
               },
               readOnly: false // false if this command should not apply in readOnly mode
             });
           });
-
-          // $rootScope.$on('firepad:remove', function(data) {
-          //
-          //   editor.destroy();
-          //   //firepad.dispose();
-          //   //this.Firebase.dispose();
-          //   element.remove();
-          // });
 
         });
 

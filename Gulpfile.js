@@ -141,11 +141,12 @@ gulp.task('order-slides', function() {
     'who-knows-fb',
     'who-has-used-fb',
     'platform',
-    'api',
     'live-coding-intro',
     'data-in-out',
     'federer-facts',
-    'data-once'
+    'data-once',
+    'angular-fire-intro',
+    'ng-federer-facts'
   ];
 
   var count = 1;

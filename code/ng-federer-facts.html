@@ -4,7 +4,7 @@
     <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/build/css/firedeck.css" rel="stylesheet" />
   </head>
-  <body class="page realtime-3">
+  <body class="page ng-federer-facts">
 
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/firebase/firebase.js"></script>
@@ -15,33 +15,28 @@
     <script>
       (function() {
 
-          var codeRef = new Firebase('https://fire-deck.firebaseio.com/code/realtime-3/post');
+          var codeRef = new Firebase('https://live-code.firebaseio.com/code/ng-federer-facts/post');
           var providers = {};
-          angular.module('Foo', [], function($controllerProvider, $compileProvider, $provide) {
-              providers = {
-                  $controllerProvider: $controllerProvider,
-                  $compileProvider: $compileProvider,
-                  $provide: $provide
-              };
-          });
 
           codeRef.on('value', function(snapshot) {
             eval(snapshot.val());
-            angular.bootstrap($('body'), ['Foo']);
+            angular.bootstrap($('body'), ['Federer']);
             // Store our _invokeQueue length before loading our controllers/directives/services
             // This is just so we don't re-register anything
-            var queueLen = angular.module('Foo')._invokeQueue.length;
+            var queueLen = angular.module('Federer')._invokeQueue.length;
             // Load html file with content which uses above content
-            $('<div id="ctrl" ng-controller="MsgCtrl">' +
-                 '<h1>Messages 3</h1>' +
-                 '<input type="text" class="add-message" ng-model="newMessage" />' +
+            $('<div id="ctrl" ng-controller="FactsCtrl">' +
+                 '<h2>Federer Facts</h2>' +
+                 '<img src="/slides/images/roger-federer-suit.jpg" alt="Roger Federer" height="250" width="200" />' +
+                 '<br /> <br />' +
+                 '<input type="text" class="add-message" ng-model="newFact" />' +
                  '<button ng-click="add()" class="btn button-primary">Add</button>' +
-                 '<div class="message adjust-left" ng-repeat="message in messages track by $index">' +
-                 '<span>{{ message }}</span>' +
+                 '<div class="message adjust-left" ng-repeat="fact in facts track by $index">' +
+                 '<span>{{ fact }}</span>' +
                  '</div>' +
             '</div>').appendTo('body');
             // Register the controls/directives/services we just loaded
-            var queue = angular.module('Foo')._invokeQueue;
+            var queue = angular.module('Federer')._invokeQueue;
             for(var i=queueLen;i<queue.length;i++) {
                 var call = queue[i];
                 // call is in the form [providerName, providerFunc, providerArguments]

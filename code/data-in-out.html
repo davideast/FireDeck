@@ -23,7 +23,7 @@
     <script>
       (function() {
 
-          var codeRef = new Firebase('https://fire-deck.firebaseio.com/code/data-in-out/post');
+          var codeRef = new Firebase('https://live-code.firebaseio.com/code/data-in-out/post');
           var providers = {};
           angular.module('Federer', [], function($controllerProvider, $compileProvider, $provide) {
               providers = {
@@ -34,7 +34,9 @@
           });
 
           codeRef.on('value', function(snapshot) {
+
             eval(snapshot.val());
+
             angular.bootstrap($('body'), ['Federer']);
             // Store our _invokeQueue length before loading our controllers/directives/services
             // This is just so we don't re-register anything

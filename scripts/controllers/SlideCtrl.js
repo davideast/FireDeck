@@ -3,17 +3,11 @@
 
   var app = angular.module('fireDeck');
 
-  app.controller('SlideCtrl', function($scope, $window, Auth, $q, $routeParams, Fb, $timeout, $location) {
+  app.controller('SlideCtrl', function($scope, $window, Auth, $q, $routeParams, Fb, $timeout, Code) {
     $scope.pageClass = 'code';
     $scope.order = {};
     $scope.reloads = 0;
     $scope.title = $routeParams.title;
-    var qs = $location.search();
-
-    if (qs.demo) {
-      $scope.demo = qs.demo;
-      $scope.demoUrl = '/code/' + $scope.demo + '.html';
-    }
 
     if ($scope.title === '') {
       $scope.pageClass = 'info';
@@ -67,8 +61,7 @@
       return deferred.promise;
     };
 
-    Fb.child('code').child($scope.title).child('post').on('value', function(snap) {
-
+    Code.child($scope.title).child('post').on('value', function(snap) {
         if ($scope.reloads > 0) {
           var iframe = document.getElementById($scope.title + '-frame');
 
@@ -78,7 +71,6 @@
         }
 
         $scope.reloads++;
-
     });
 
     $scope.change = function(config) {
