@@ -29,10 +29,10 @@
                  '<h2>Federer Facts</h2>' +
                  '<img src="/slides/images/roger-federer-suit.jpg" alt="Roger Federer" height="250" width="200" />' +
                  '<br /> <br />' +
-                 '<input type="text" class="add-message" ng-model="newFact" />' +
+                 '<input type="text" class="add-message" ng-model="newFact" ng-keyup="enter($event)" />' +
                  '<button ng-click="add()" class="btn button-primary">Add</button>' +
-                 '<div class="message adjust-left" ng-repeat="fact in facts track by $index">' +
-                 '<span>{{ fact }}</span>' +
+                 '<div class="message adjust-left" ng-repeat="fact in facts | orderBy: \'time\':true">' +
+                 '<span>{{ fact.fact }}</span>' +
                  '</div>' +
             '</div>').appendTo('body');
             // Register the controls/directives/services we just loaded

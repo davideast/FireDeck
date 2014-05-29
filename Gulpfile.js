@@ -141,10 +141,6 @@ gulp.task('order-slides', function() {
 
   // what
     'platform',
-    'fb-arch',
-    // api image
-    // realtime api image
-    'no-backend',
 
   // why
     'hardest-part',
@@ -153,13 +149,18 @@ gulp.task('order-slides', function() {
     'production-stage',
     'better-way',
 
+  // what
+    'fb-arch',
+    // api image
+    // realtime api image
+    'no-backend',
+
   // how
     'live-coding-intro',
     'data-in-out',
-    'federer-facts',
-    'data-once',
     'angular-fire-intro',
-    'ng-federer-facts'
+    'ng-federer-facts',
+    'data-once',
   ];
 
   var count = 1;
