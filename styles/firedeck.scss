@@ -190,7 +190,7 @@ body {
     position: absolute !important;
     z-index: 999999 !important;
   }
-  
+
 }
 
 #render-container {
@@ -201,6 +201,12 @@ body {
   top: 0;
   vertical-align: top;
   background: $slate;
+
+  &.full {
+    width: 100%;
+    position: absolute !important;
+    z-index: 999999999;
+  }
 
   .render-frame {
     height: 100%;
