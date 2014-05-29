@@ -131,16 +131,29 @@ gulp.task('order-slides', function() {
   order.remove();
 
   var slideOrder = [
+  // intro
     'intro',
     'who',
+    'presentation-info',
+    'covering-today',
+    'who-knows-fb',
+    'who-has-used-fb',
+
+  // what
+    'platform',
+    'fb-arch',
+    // api image
+    // realtime api image
+    'no-backend',
+
+  // why
     'hardest-part',
     'prototype-stage',
     'backend-stage',
     'production-stage',
     'better-way',
-    'who-knows-fb',
-    'who-has-used-fb',
-    'platform',
+
+  // how
     'live-coding-intro',
     'data-in-out',
     'federer-facts',

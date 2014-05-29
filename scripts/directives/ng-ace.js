@@ -49,7 +49,7 @@
                 $container.removeClass('full');
               }
               editor.resize();
-            })
+            });
 
             Code.child(scope.location).child('panel-full').on('value', function(snap) {
               var $frame = $('#render-container');

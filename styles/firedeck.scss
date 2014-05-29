@@ -108,13 +108,16 @@ body {
   color: $tarheel;
 }
 .text-discs {
-  color: $discs;
+  color: $discs !important;
 }
 .text-pride {
   color: $pride;
 }
 .text-rebel {
   color: $rebel;
+}
+.text-underline {
+  text-decoration: underline;
 }
 
 /* PAGES

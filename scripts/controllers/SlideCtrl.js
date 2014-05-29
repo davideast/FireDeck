@@ -62,7 +62,6 @@
     };
 
     Code.child($scope.title).child('post').on('value', function(snap) {
-        console.log($scope.reloads);
         if ($scope.reloads > 0) {
           var iframe = document.getElementById($scope.title + '-frame');
 
