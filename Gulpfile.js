@@ -132,9 +132,9 @@ gulp.task('order-slides', function() {
 
   var slideOrder = [
   // intro
+    'presentation-info',
     'intro',
     'who',
-    'presentation-info',
     'covering-today',
     'who-knows-fb',
     'who-has-used-fb',
@@ -156,11 +156,34 @@ gulp.task('order-slides', function() {
     'no-backend',
 
   // how
+    // -- Basic data
     'live-coding-intro',
     'data-in-out',
+
+    // -- AngularFire
     'angular-fire-intro',
     'ng-federer-facts',
-    'data-once',
+
+    // -- Load Data Once
+    'data-once', // switch to angular
+
+    // -- Simple Login Example Code
+    // 'simple-login',
+    // 'tokens',
+    // 'federer-secret' // login/logout code only, register in dash
+
+    // -- Security Rules
+    //'security-rules',
+    //'federer-facts_',
+
+    // -- Hosting
+    // 'hosting',
+    //   -- Escape to command line
+
+    // -- Summary
+    // 'summary',
+    // 'resources',
+    // 'goodbye' // contact us plz & challenge
   ];
 
   var count = 1;
