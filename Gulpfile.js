@@ -151,9 +151,10 @@ gulp.task('order-slides', function() {
 
   // what
     'fb-arch',
-    // api image
-    // realtime api image
     'no-backend',
+    'simple-api',
+    'realtime-api',
+    'js-client',
 
   // how
     // -- Basic data
@@ -168,22 +169,22 @@ gulp.task('order-slides', function() {
     'data-once', // switch to angular
 
     // -- Simple Login Example Code
-    // 'simple-login',
+    'simple-login',
     // 'tokens',
-    // 'federer-secret' // login/logout code only, register in dash
+    'federer-secret', // login/logout code only, register in dash
 
     // -- Security Rules
-    //'security-rules',
-    //'federer-facts_',
+    'security-rules',
+    'federer-facts_',
 
     // -- Hosting
-    // 'hosting',
+    'hosting',
     //   -- Escape to command line
 
     // -- Summary
-    // 'summary',
-    // 'resources',
-    // 'goodbye' // contact us plz & challenge
+    'summary',
+    'resources',
+    'goodbye' // contact us plz & challenge
   ];
 
   var count = 1;

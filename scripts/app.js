@@ -12,7 +12,8 @@
 			})
       .when('/slide/:title', {
         templateUrl: function(params){
-          return '../slides/' + params.title + '.html';
+          var title = params.title.replace('_', '');
+          return '../slides/' + title + '.html';
         },
         controller: 'SlideCtrl'
       })

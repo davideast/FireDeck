@@ -62,9 +62,9 @@
             });
 
             // TODO: add live folding
-            session.on('changeFold', function(e) {
-              //console.log(e.data.start, e.data.end);
-            });
+            // session.on('changeFold', function(e) {
+            //   //console.log(e.data.start, e.data.end);
+            // });
 
             editor.commands.addCommand({
               name: 'Reload',

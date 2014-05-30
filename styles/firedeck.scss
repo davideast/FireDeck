@@ -105,19 +105,23 @@ body {
 }
 
 .text-tarheel {
-  color: $tarheel;
+  color: $tarheel !important;
 }
 .text-discs {
   color: $discs !important;
 }
 .text-pride {
-  color: $pride;
+  color: $pride !important;
 }
 .text-rebel {
-  color: $rebel;
+  color: $rebel !important;
 }
 .text-underline {
   text-decoration: underline;
+}
+
+.form-control {
+  border-radius: 0 !important;
 }
 
 /* PAGES

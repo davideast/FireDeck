@@ -14,8 +14,6 @@
 
     $scope.user = {};
 
-    console.log($scope.auth);
-
     $scope.login = function() {
       $scope.auth.login('password', {
         email: $scope.user.name,
