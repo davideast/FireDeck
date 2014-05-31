@@ -15,7 +15,7 @@ angular.module('Federer')
     // root -> roger-federer
     // https://fire-deck.firebaseio.com/roger-federer
     rogerRef = firebseRef.child('roger-federer');
-    
+
     // show the set override and then fix with an update
     $scope.updateRoger = function() {
         // set vs update
@@ -30,7 +30,6 @@ angular.module('Federer')
     rogerRef.on('value', function(snap) {
        $timeout(function() {
           $scope.roger = snap.val();
-          console.log($scope.roger);
        });
     });
 

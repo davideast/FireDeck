@@ -1,20 +1,42 @@
 angular.module('Federer', ['firebase'])
 
-.constant('FBURL', 'https://fire-deck.firebaseio.com/')
+.constant('FBURL', 'https://live-code.firebaseio.com/')
 
 .factory('Fb', function(FBURL) {
-  return new Firebase(FBURL);
+    return new Firebase(FBURL);
 })
 
-.factory('Facts', function(Fb, $firebase) {
-   return $firebase(Fb.child('facts'));
+.service('FactService', function(Fb, $firebase) {
+    var facts = $firebase(Fb.child('facts'));
+    return {
+        add: function(fact) {
+            facts.$add({
+                fact: fact,
+                time: Firebase.ServerValue.TIMESTAMP
+            });
+        },
+        get: function() {
+            return facts.$asArray();
+        }
+    }
 })
 
-.controller('FactsCtrl', function($scope, Facts) {
-    $scope.facts = Facts;
+.controller('FactsCtrl', function($scope, FactService) {
+    $scope.facts = FactService.get();
     $scope.newFact = '';
 
+    function addFact() {
+        FactService.add($scope.newFact);
+        $scope.newFact = '';
+    }
+
     $scope.add = function() {
-        $scope.facts.$add($scope.newFact);
+        addFact();
+    };
+
+    $scope.enter = function(e) {
+        if (e && e.which === 13) {
+           addFact();
+        }
     };
 });

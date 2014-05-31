@@ -7,6 +7,7 @@
    function($scope, $window, Auth) {
 
     $scope.auth = Auth(function(error, user) {
+      console.log(error, user);
       if (user) {
         $window.location.href = '/#/dashboard';
       }
