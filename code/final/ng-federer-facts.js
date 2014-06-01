@@ -1,6 +1,6 @@
 angular.module('Federer', ['firebase'])
 
-.constant('FBURL', 'https://live-code.firebaseio.com/')
+.constant('FBURL', 'https://fire-deck.firebaseio.com/')
 
 .factory('Fb', function(FBURL) {
     return new Firebase(FBURL);
