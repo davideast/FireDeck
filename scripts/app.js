@@ -30,7 +30,7 @@
   app.constant('SLIDES', 'https://fire-deck.firebaseio.com/slides');
   app.constant('CURRENT', 'https://fire-deck.firebaseio.com/current');
   app.constant('LCURL', 'https://live-code.firebaseio.com/');
-  app.constant('CODEURL', 'https://live-code.firebaseio.com/code');
+  app.constant('CODEURL', 'https://fire-deck.firebaseio.com/code');
 
   app.run(function($window, Fb, $rootScope) {
     // global change page

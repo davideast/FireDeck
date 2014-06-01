@@ -6,7 +6,7 @@ angular.module('Federer', ['firebase'])
     return new Firebase(FBURL);
 })
 
-.service('FactService', function(Fb, $firebase) {
+.factory('Facts', function(Fb, $firebase) {
     var facts = $firebase(Fb.child('facts'));
     return {
         add: function(fact) {
@@ -21,12 +21,12 @@ angular.module('Federer', ['firebase'])
     }
 })
 
-.controller('FactsCtrl', function($scope, FactService) {
-    $scope.facts = FactService.get();
+.controller('FactsCtrl', function($scope, Facts) {
+    $scope.facts = Facts.get();
     $scope.newFact = '';
 
     function addFact() {
-        FactService.add($scope.newFact);
+        Facts.add($scope.newFact);
         $scope.newFact = '';
     }
 
@@ -39,4 +39,7 @@ angular.module('Federer', ['firebase'])
            addFact();
         }
     };
+
 });
+
+// curl -X DELETE 'https://fire-deck.firebaseio.com/facts.json'

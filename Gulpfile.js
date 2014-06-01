@@ -127,72 +127,79 @@ gulp.task('order-slides', function() {
   var index = new Firebase('https://fire-deck.firebaseio.com/order-index');
   var order = new Firebase('https://fire-deck.firebaseio.com/order');
 
-  index.remove();
-  order.remove();
+  function orderSlides() {
 
-  var slideOrder = [
-  // intro
-    'presentation-info',
-    'intro',
-    'who',
-    'covering-today',
-    'who-knows-fb',
-    'who-has-used-fb',
+    index.remove();
+    order.remove();
 
-  // what
-    'platform',
+    var slideOrder = [
+    // intro
+      'presentation-info',
+      'intro',
+      'who',
+      'covering-today',
+      'who-knows-fb',
+      'who-has-used-fb',
 
-  // why
-    'hardest-part',
-    'prototype-stage',
-    'backend-stage',
-    'production-stage',
-    'better-way',
+    // what
+      'platform',
 
-  // what
-    'fb-arch',
-    'no-backend',
-    'simple-api',
-    'realtime-api',
-    'js-client',
+    // why
+      'hardest-part',
+      'prototype-stage',
+      'backend-stage',
+      'production-stage',
+      'better-way',
 
-  // how
-    // -- Basic data
-    'live-coding-intro',
-    'data-in-out',
+    // what
+      'fb-arch',
+      'no-backend',
+      'simple-api',
+      'realtime-api',
+      'js-client',
 
-    // -- AngularFire
-    'angular-fire-intro',
-    'ng-federer-facts',
+    // how
+      // -- Basic data
+      'live-coding-intro',
+      'data-in-out',
 
-    // -- Load Data Once
-    'data-once', // switch to angular
+      // -- AngularFire
+      'angular-fire-intro',
+      'ng-federer-facts',
 
-    // -- Simple Login Example Code
-    'simple-login',
-    // 'tokens',
-    'federer-secret', // login/logout code only, register in dash
+      // -- Load Data Once
+      //'data-once', // switch to angular
 
-    // -- Security Rules
-    'security-rules',
-    'federer-facts_',
+      // -- Simple Login Example Code
+      'simple-login',
+      // 'tokens',
+      'federer-secret', // login/logout code only, register in dash
 
-    // -- Hosting
-    'hosting',
-    //   -- Escape to command line
+      // -- Security Rules
+      'security-rules',
+      'ng-federer-facts_',
 
-    // -- Summary
-    'summary',
-    'resources',
-    'goodbye' // contact us plz & challenge
-  ];
+      // -- Hosting
+      'hosting',
+      //   -- Escape to command line
 
-  var count = 1;
-  slideOrder.forEach(function(title) {
-    order.child(count).set(title);
-    index.child(title).set(count);
-    count++;
-  });
+      // -- Summary
+      'summary',
+      'resources',
+      'goodbye' // contact us plz & challenge
+    ];
+
+    var count = 1;
+    slideOrder.forEach(function(title) {
+      order.child(count).set(title);
+      index.child(title).set(count);
+      count++;
+    });
+
+  }
+
+  orderSlides();
+
 });
 
 gulp.task('build', ['lint', 'concat', 'uglify', 'styles']);

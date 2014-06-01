@@ -18,8 +18,4 @@ angular.module('Federer')
         });
     });
 
-    $scope.add = function() {
-        rivalsRef.push($scope.newFact);
-        $scope.newFact = '';
-    };
 });
