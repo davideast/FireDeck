@@ -10,37 +10,35 @@
     $scope.reloads = 0;
     $scope.title = $routeParams.title;
 
-    if ($scope.title === '') {
-      $scope.pageClass = 'info';
-    }
+    // Auth(function(error, user) {
+    //   if (user) {
+    //
+    //   }
+    // });
 
-    Auth(function(error, user) {
-      if (user) {
-        $timeout(function() {
-          $('<div id="control-bar"></div>').appendTo('body');
-          $('<button class="btn button-warning" style="position:absolute;top:0;right:60px;z-index:99999999">Prev</button>')
-            .on('click', function() {
-              Fb.child('order').child($scope.order.prev).once('value', function(snap) {
-                var value = snap.val();
-                if (value) {
-                  Fb.child('current').set(value);
-                }
-              });
-            })
-            .appendTo('#control-bar');
-          $('<button class="btn button-primary" style="position:absolute;top:0;right:0px;z-index:99999999">Next</button>')
-            .on('click', function() {
+    $timeout(function() {
+      $('<div id="control-bar"></div>').appendTo('body');
+      $('<button class="btn button-warning" style="position:absolute;top:0;right:60px;z-index:99999999">Prev</button>')
+        .on('click', function() {
+          Fb.child('order').child($scope.order.prev).once('value', function(snap) {
+            var value = snap.val();
+            if (value) {
+              $window.location.href = '/#/slide/' + value;
+            }
+          });
+        })
+        .appendTo('#control-bar');
+      $('<button class="btn button-primary" style="position:absolute;top:0;right:0px;z-index:99999999">Next</button>')
+        .on('click', function() {
 
-              Fb.child('order').child($scope.order.next).once('value', function(snap) {
-                var value = snap.val();
-                if (value) {
-                  Fb.child('current').set(value);
-                }
-              });
-            })
-            .appendTo('#control-bar');
-        });
-      }
+          Fb.child('order').child($scope.order.next).once('value', function(snap) {
+            var value = snap.val();
+            if (value) {
+              $window.location.href = '/#/slide/' + value;
+            }
+          });
+        })
+        .appendTo('#control-bar');
     });
 
     Fb.child('order-index').child($scope.title).once('value', function(snap) {

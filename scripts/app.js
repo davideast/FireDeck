@@ -21,7 +21,7 @@
         templateUrl : '../views/login.html',
         controller  : 'LoginCtrl'
       })
-      .otherwise('/');
+      .otherwise('/slide/intro');
 
   }]);
 
@@ -34,12 +34,12 @@
 
   app.run(function($window, Fb, $rootScope, $cookieStore) {
     // global change page
-    Fb.child('current').on('value', function(snap) {
-      var value = snap.val();
-      if (value) {
-        $window.location.href = '/#/slide/' + value;
-      }
-    });
+    // Fb.child('current').on('value', function(snap) {
+    //   var value = snap.val();
+    //   if (value) {
+    //     $window.location.href = '/#/slide/' + value;
+    //   }
+    // });
 
     var userVotesCookie = $cookieStore.get('userVotes');
     if (!userVotesCookie) {

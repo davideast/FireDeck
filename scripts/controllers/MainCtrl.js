@@ -7,6 +7,8 @@
 
     $scope.pageClass = 'page-about';
 
+    $window.location.href = '/#/slide/intro';
+
   }]);
 
 }(window, angular));

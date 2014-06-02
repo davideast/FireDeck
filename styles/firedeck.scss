@@ -79,7 +79,8 @@ body {
 @mixin button-creator($color) {
   background: $color;
   outline: none !important;
-
+  color: $slate;
+  
   &:active {
     background: darken($color, 7%);
   }
