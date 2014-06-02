@@ -1,7 +1,7 @@
 /* global Firebase */
 (function(window, angular) {
 
-  var app = angular.module('fireDeck', ['ngRoute', 'ngAnimate', 'ngSanitize', 'firebase']);
+  var app = angular.module('fireDeck', ['ngRoute', 'ngAnimate', 'ngSanitize', 'firebase', 'ngCookies']);
 
   app.config(['$routeProvider', function($routeProvider) {
 
@@ -32,7 +32,7 @@
   app.constant('LCURL', 'https://live-code.firebaseio.com/');
   app.constant('CODEURL', 'https://fire-deck.firebaseio.com/code');
 
-  app.run(function($window, Fb, $rootScope) {
+  app.run(function($window, Fb, $rootScope, $cookieStore) {
     // global change page
     Fb.child('current').on('value', function(snap) {
       var value = snap.val();
@@ -42,9 +42,9 @@
     });
 
     var userVotesCookie = $cookieStore.get('userVotes');
-      if (!userVotesCookie) {
-        $cookieStore.put('userVotes', {});
-      }
+    if (!userVotesCookie) {
+      $cookieStore.put('userVotes', {});
+    }
 
   });
 

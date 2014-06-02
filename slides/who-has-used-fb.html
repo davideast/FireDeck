@@ -1,12 +1,12 @@
 <div class="container slide">
   <h1>Who has <em>used</em> Firebase?</h1>
 
-  <button class="btn btn-huge button-primary">Yes</button>
-  <button class="btn btn-huge button-warning">No</button>
+  <button class="btn btn-huge button-primary" ng-click="used('yes')">Yes</button>
+  <button class="btn btn-huge button-warning" ng-click="used('no')">No</button>
 
   <div class="slide">
-    <div class="mid-plus">Yes - 32</div>
-    <div class="mid-plus">No - 7</span>
+    <div class="mid-plus">Yes - {{ usedYes }}</div>
+    <div class="mid-plus">No - {{ usedNo }}</span>
   </div>
 
 </div>
