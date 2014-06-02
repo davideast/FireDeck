@@ -1,6 +1,6 @@
-angular.module('Federer', ['firebase'])
+angular.module('Federer', [])
 
-.service('FactService', function() {
+.factory('FactStore', function() {
     var facts = [];
     return {
         add: function(fact) {
@@ -15,12 +15,12 @@ angular.module('Federer', ['firebase'])
     }
 })
 
-.controller('FactsCtrl', function($scope, FactService) {
-    $scope.facts = FactService.get();
+.controller('FactsCtrl', function($scope, FactStore) {
+    $scope.facts = FactStore.get();
     $scope.newFact = '';
 
     function addFact() {
-        FactService.add($scope.newFact);
+        FactStore.add($scope.newFact);
         $scope.newFact = '';
     }
 

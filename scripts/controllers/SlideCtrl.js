@@ -3,7 +3,8 @@
 
   var app = angular.module('fireDeck');
 
-  app.controller('SlideCtrl', function($scope, $window, Auth, $q, $routeParams, Fb, $timeout, Code) {
+  app.controller('SlideCtrl', function($scope, $window, Auth, $q, $routeParams, Fb, $timeout, Code, $cookieStore) {
+
     $scope.pageClass = 'code';
     $scope.order = {};
     $scope.reloads = 0;
@@ -73,9 +74,40 @@
         $scope.reloads++;
     });
 
-    $scope.change = function(config) {
-      config.ref.child('post').set(config.pad.getText());
-    };
+
+    if ($scope.title === 'who-knows-fb') {
+      var heard = Fb.child('heard'),
+          heardYes = heard.child('up'),
+          heardNo = heard.child('down');
+
+      $scope.heard = function(dir) {
+        heard.child(dir).push(true);
+      };
+
+      heardYes.on('value', function(snap) {
+        $timeout(function() {
+          $scope.heardYes = snap.numChildren();
+        });
+      });
+
+      heardNo.on('value', function(snap) {
+        $timeout(function() {
+          $scope.heardNo = snap.numChildren();
+        });
+      });
+
+    }
+
+    if ($scope.title === 'who-has-used-fb') {
+
+      $scope.used = function(dir) {
+        Fb.child('used').child(dir).push(true);
+      };
+
+    }
+
+
+
 
   });
 

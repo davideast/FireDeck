@@ -1,11 +1,11 @@
 <div class="container slide">
   <h1>Who has heard of Firebase?</h1>
-  <button class="btn btn-huge button-primary">Yes</button>
-  <button class="btn btn-huge button-warning">No</button>
+  <button class="btn btn-huge button-primary" ng-click="heard('up')">Yes</button>
+  <button class="btn btn-huge button-warning" ng-click="heard('down')">No</button>
 
   <div class="slide">
-    <div class="mid-plus">Yes - 32</div>
-    <div class="mid-plus">No - 7</span>
+    <div class="mid-plus">Yes - {{ heardYes }}</div>
+    <div class="mid-plus">No - {{ heardNo }}</span>
   </div>
 
 </div>

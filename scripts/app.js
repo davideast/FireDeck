@@ -41,6 +41,11 @@
       }
     });
 
+    var userVotesCookie = $cookieStore.get('userVotes');
+      if (!userVotesCookie) {
+        $cookieStore.put('userVotes', {});
+      }
+
   });
 
 }(window, angular));

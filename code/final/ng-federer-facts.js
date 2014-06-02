@@ -41,5 +41,3 @@ angular.module('Federer', ['firebase'])
     };
 
 });
-
-// curl -X DELETE 'https://fire-deck.firebaseio.com/facts.json'
