@@ -62,6 +62,10 @@
       return deferred.promise;
     };
 
+    $scope.change = function(config) {
+      config.ref.child('post').set(config.pad.getText());
+    };
+
     Code.child($scope.title).child('post').on('value', function(snap) {
         if ($scope.reloads > 0) {
           var iframe = document.getElementById($scope.title + '-frame');
@@ -139,9 +143,6 @@
         });
       });
     }
-
-
-
 
   });
 
