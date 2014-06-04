@@ -12,12 +12,6 @@
     $scope.reloads = 0;
     $scope.title = $routeParams.title;
 
-    // Auth(function(error, user) {
-    //   if (user) {
-    //
-    //   }
-    // });
-
     $scope.change = function(config) {
       config.ref.child('post').set(config.pad.getText());
     };

@@ -1,2 +1,4 @@
-<button class="btn button-warning switcher-btn switcher-btn-prev" ng-click="prev()">Prev</button>
-<button class="btn button-primary switcher-btn" ng-click="next()">Next</button>
+<div id="control-bar" ng-if="allowed()">
+  <button class="btn button-warning switcher-btn switcher-btn-prev" ng-click="prev()">Prev</button>
+  <button class="btn button-primary switcher-btn" ng-click="next()">Next</button>
+</div>

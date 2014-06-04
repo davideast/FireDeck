@@ -30,7 +30,7 @@
   app.constant('CURRENT', 'https://fire-deck.firebaseio.com/current');
   app.constant('CODEURL', 'https://fire-deck.firebaseio.com/code');
 
-  app.run(function($window, Fb, $rootScope, $cookieStore) {
+  app.run(function($window, Fb, $rootScope, $cookieStore, Auth, $q) {
 
     // create cookie for storing votes
     var userVotesCookie = $cookieStore.get('userVotes');
@@ -45,7 +45,19 @@
         $window.location.href = '/#/slide/' + value;
       }
     });
-    
+
+    $rootScope.auth = function() {
+      var deferred = $q.defer();
+      var auth = Auth(function(error, user) {
+        if (user) {
+          deferred.resolve(true);
+        } else {
+          deferred.resolve(false);
+        }
+      });
+      return deferred.promise;
+    };
+
   });
 
 }(window, angular));

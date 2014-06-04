@@ -1,6 +1,6 @@
 (function(window, angular) {
   "use strict";
-  
+
   angular.module('fireDeck')
     .factory('Auth', ['Fb', function(Fb) {
 

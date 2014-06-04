@@ -7,7 +7,7 @@
 
   var app = angular.module('fireDeck');
 
-  app.directive('slideSwitcher', function($window, SlideSwitcher, $routeParams) {
+  app.directive('slideSwitcher', function(Fb, SlideSwitcher, $routeParams, $q, $rootScope) {
     return {
       restrict: 'E',
       scope: {
@@ -16,19 +16,51 @@
       },
       templateUrl: 'views/slide-switcher.html',
       link: function(scope, element, attrs) {
-        var switcher = SlideSwitcher.create();
 
-        // scope.auth.then(function() {
-        //
-        // });
+        var global, auth;
+        function checkGlobal() {
+          var isGlobal = $q.defer();
+          Fb.child('global').once('value', function(snap) {
+            isGlobal.resolve(snap.val());
+          });
+          return isGlobal.promise;
+        }
 
-        scope.prev = function() {
-          switcher.prev($routeParams.title);
-        };
+        var globalAuth = checkGlobal();
 
-        scope.next = function() {
-          switcher.next($routeParams.title);
-        };
+        globalAuth
+          .then(function(config) {
+            global = config;
+            return $rootScope.auth();
+          })
+          .then(function(authed) {
+
+            scope.allowed = function() {
+
+              if (!global) {
+                return false;
+              }
+
+              if (!authed && global.hide) {
+                return false;
+              }
+
+              var switcher = SlideSwitcher.create(global.global);
+
+              scope.prev = function() {
+                switcher.prev($routeParams.title);
+              };
+
+              scope.next = function() {
+                switcher.next($routeParams.title);
+              };
+
+              return true;
+
+            };
+
+          });
+
       }
     };
   });
