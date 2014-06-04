@@ -1,4 +1,2 @@
-Firedeck
+FireDeck
 ========
-
-Making decks with Firebase

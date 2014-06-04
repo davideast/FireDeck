@@ -1,1 +1,4 @@
-{}
+{
+  "predef": [ "Firebase", "angular", "window", "$" ],
+  "strict": "true"
+}

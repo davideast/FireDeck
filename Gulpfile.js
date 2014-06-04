@@ -48,8 +48,8 @@ var paths = {
 gulp.task('lint', function(){
   return gulp.src(paths.scripts.app)
     .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('default'))
-    .pipe(notify({ message: 'Lint task complete' }));
+    .pipe(jshint.reporter('default'));
+    //.pipe(notify({ message: 'Lint task complete' }));
 });
 
 gulp.task('concat', function(){
@@ -67,11 +67,11 @@ gulp.task('minify', function(){
 gulp.task('preMin', ['minify'],function(){
   return gulp.src(paths.scripts.buildDir + paths.scripts.minified)
     .pipe(min())
-    .pipe(gulp.dest(paths.scripts.buildDir))
-    .pipe(notify({ message: 'Min done' }));
+    .pipe(gulp.dest(paths.scripts.buildDir));
+    //.pipe(notify({ message: 'Min done' }));
 });
 
-gulp.task('uglify', ['minify'],function(){
+gulp.task('uglify', ['preMin'],function(){
   return gulp.src(paths.scripts.buildDir + paths.scripts.minified)
    .pipe(uglify())
    .pipe(gulp.dest(paths.scripts.buildDir))
@@ -173,11 +173,10 @@ gulp.task('order-slides', function() {
       // -- Simple Login Example Code
       'simple-login',
       // 'tokens',
-      'federer-secret', // login/logout code only, register in dash
+      'federer-secret',
 
       // -- Security Rules
       'security-rules',
-      //'ng-federer-facts_',
 
       // -- Hosting
       'hosting',

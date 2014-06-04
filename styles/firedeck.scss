@@ -80,7 +80,7 @@ body {
   background: $color;
   outline: none !important;
   color: $slate;
-  
+
   &:active {
     background: darken($color, 7%);
   }
@@ -124,6 +124,18 @@ body {
 .form-control {
   border-radius: 0 !important;
 }
+
+.switcher-btn {
+  position:absolute;
+  top:0;
+  right:0px;
+  z-index:99999999
+}
+
+.switcher-btn-prev {
+  right: 60px;
+}
+
 
 /* PAGES
 ============================================================================= */

@@ -7,11 +7,16 @@
   </head>
   <body data-ng-app="fireDeck">
 
-    <div id="main-slide" class="page page-animation {{ pageClass }}" data-ng-view="" control=""></div>
+    <div id="page-wrap">
+      <slide-switcher auth="authFn" global="false"></slide-switcher>
+      <div id="main-slide"
+           class="page page-animation {{ pageClass }}"
+           data-ng-view="">
+      </div>
+    </div>
 
     <script src="firepad/ace/ace.js"></script>
     <script src="firepad/ace/mode-javascript.js"></script>
-    <script src="firepad/ace/theme-textmate.js"></script>
     <script src="firepad/ace/theme-monokai.js"></script>
     <script src="firepad/dist/firepad.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>

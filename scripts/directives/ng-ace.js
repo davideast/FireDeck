@@ -1,8 +1,9 @@
 (function(angular, ace, Firepad) {
+  "use strict";
 
   var app = angular.module('fireDeck');
 
-  app.directive('ngAce', ['$timeout', 'Code', function($timeout, Code) {
+  app.directive('ngAce', function($timeout, Code) {
     return {
       restrict: 'E',
       scope: {
@@ -146,6 +147,6 @@
 
       }
     };
-  }]);
+  });
 
 }(window.angular, window.ace, window.Firepad));
