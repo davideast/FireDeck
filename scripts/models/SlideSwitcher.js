@@ -22,17 +22,24 @@
         },
         change: function(currentPage, fn) {
 
+          // grab the index of the page we are currently on
           Fb.child('order-index').child(currentPage).once('value', function(snap) {
             var value = parseInt(snap.val(), 10);
-            var page = fn.call(this, value);
+            // determine if we are going forwards or backwards
+            var direction = fn.call(this, value);
 
-            Fb.child('order').child(page).once('value', function(snapshot) {
+            // get the page name of the slide by the index
+            Fb.child('order').child(direction).once('value', function(snapshot) {
               var page = snapshot.val();
               if (page) {
 
+                // if there is a global config then change the current
+                // page value in firebase
                 if (global) {
                   Fb.child('current').set(page);
                 } else {
+                  // if there is no global config, just switch the page
+                  // locally
                   $window.location.href = '/#/slide/' + page;
                 }
 
