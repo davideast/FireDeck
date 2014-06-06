@@ -1,9 +1,11 @@
+/*app.js*/
+/*jshint newcap: false  */
 (function(window, angular) {
   "use strict";
 
   var app = angular.module('fireDeck', ['ngRoute', 'ngAnimate', 'ngSanitize', 'firebase', 'ngCookies']);
 
-  app.config(['$routeProvider', function($routeProvider) {
+  app.config(function($routeProvider) {
 
     $routeProvider
 			.when('/', {
@@ -21,7 +23,7 @@
         controller  : 'LoginCtrl'
       })
       .otherwise('/');
-  }]);
+  });
 
   // set up constants
   app.constant('FBURL', 'https://fire-deck.firebaseio.com/');
@@ -45,6 +47,7 @@
       }
     });
 
+    // global auth function
     $rootScope.auth = function() {
       var deferred = $q.defer();
       var auth = Auth(function(error, user) {

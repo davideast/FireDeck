@@ -93,7 +93,7 @@ gulp.task('styles', function () {
     .pipe(gulp.dest(paths.styles.dest));
 });
 
-/* Uses the Karma test runner to run the Jasmine tests */
+/* Uses the Karma test runner to run the Jasmine tests
 gulp.task('test', function() {
   return gulp.src(paths.tests)
     .pipe(karma({
@@ -104,6 +104,7 @@ gulp.task('test', function() {
       throw err;
     });
 });
+*/
 
 gulp.task('reload', function(){
   gulp.src(paths.buildDir + '/**/*')
@@ -185,7 +186,7 @@ gulp.task('order-slides', function() {
       // -- Summary
       'summary',
       'resources',
-      'goodbye' // contact us plz & challenge
+      'goodbye' // contact us & challenge for free swag
     ];
 
     var count = 1;
@@ -203,6 +204,6 @@ gulp.task('order-slides', function() {
 
 gulp.task('build', ['lint', 'concat', 'uglify', 'styles']);
 
-gulp.task('default', ['build', 'test']);
+gulp.task('serve', ['build', 'server', 'watch']);
 
-gulp.task("serve", ['build', 'server', 'watch']);
+gulp.task('default', ['build']);
