@@ -6,29 +6,12 @@
   var app = angular.module('fireDeck');
 
   app.controller('SlideCtrl', function($scope, $window, Auth, $q, $routeParams, Fb, $timeout, Code, $cookieStore) {
+    var USER_VOTES = 'userVotes';
 
     $scope.pageClass = 'code';
     $scope.order = {};
     $scope.reloads = 0;
     $scope.title = $routeParams.title;
-
-    $scope.change = function(config) {
-      config.ref.child('post').set(config.pad.getText());
-    };
-
-    Code.child($scope.title).child('post').on('value', function(snap) {
-        if ($scope.reloads > 0) {
-          var iframe = document.getElementById($scope.title + '-frame');
-
-          if (iframe) {
-            iframe.contentWindow.location.reload();
-          }
-        }
-
-        $scope.reloads++;
-    });
-
-    var USER_VOTES = 'userVotes';
 
     function setVote(id) {
       var userVotes = $cookieStore.get(USER_VOTES);
