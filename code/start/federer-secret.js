@@ -33,16 +33,4 @@ angular.module('Federer', ['firebase'])
 
 .controller('SecretCtrl', function($scope, Auth, Secret) {
     $scope.secret = '';
-
-    // Auth.login({
-    //     user: 'email@email.com',
-    //     password: 'disismypass:)'
-    // });
-
-    Auth.onLogin(function(e, user) {
-       if(user) {
-           $scope.secret = Secret.$value;
-       }
-    });
-
 });

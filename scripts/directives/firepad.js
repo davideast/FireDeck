@@ -1,7 +1,7 @@
 /**
  * Firepad Directive
- * This is a very rudimentary implementation of a FirePad directive. Future
- * versions will be provide more customization.
+ * This is a very rudimentary implementation of a FirePad directive. That
+ * really only supports this presentation. 
  **/
 (function (angular, ace, Firepad) {
 	"use strict";

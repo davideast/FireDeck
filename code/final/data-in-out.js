@@ -8,23 +8,9 @@ angular.module('Federer')
     };
 
     // References can chain into other locations
-    var firebseRef = new Firebase(
-        'https://fire-deck.firebaseio.com'
-    ),
-
-    // root -> roger-federer
-    // https://fire-deck.firebaseio.com/roger-federer
-    rogerRef = firebseRef.child('roger-federer');
-
-    // show the set override and then fix with an update
-    $scope.updateRoger = function() {
-        // set vs update
-        rogerRef.set({
-            name: 'Roger Federer',
-            wimbledons: '323',
-            usOpens: '212'
-        });
-    };
+    var firebaseRef = new Firebase(
+        'https://<your-firebase>.firebaseio.com/roger'
+    );
 
     // set the listener to update the values
     rogerRef.on('value', function(snap) {
