@@ -14,7 +14,8 @@
 			})
       .when('/slide/:title', {
         templateUrl: function(params){
-          return '../slides/' + params.title + '.html';
+          console.log('/slides/' + params.title + '.html');
+          return '/slides/' + params.title + '.html';
         },
         controller: 'SlideCtrl'
       })

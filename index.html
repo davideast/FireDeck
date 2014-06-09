@@ -1,33 +1,36 @@
 <html>
   <head>
     <title>Level Up!</title>
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="build/css/firedeck.css" rel="stylesheet" />
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/build/css/firedeck.css" rel="stylesheet" />
     <link rel="stylesheet" href="/firepad/dist/firepad.css" />
   </head>
   <body data-ng-app="fireDeck">
 
     <div id="page-wrap">
+
       <slide-switcher auth="auth"></slide-switcher>
+
       <div id="main-slide"
            class="page page-animation {{ pageClass }}"
            data-ng-view="">
       </div>
+
     </div>
 
-    <script src="firepad/ace/ace.js"></script>
-    <script src="firepad/ace/mode-javascript.js"></script>
-    <script src="firepad/ace/theme-monokai.js"></script>
-    <script src="firepad/dist/firepad.js"></script>
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/firebase/firebase.js"></script>
-    <script src="bower_components/angularfire/angularfire.js"></script>
-    <script src="bower_components/firebase-simple-login/firebase-simple-login.js"></script>
-    <script src="build/js/firedeck.js"></script>
+    <!-- <script src="/firepad/ace/ace.js"></script>
+    <script src="/firepad/ace/mode-javascript.js"></script>
+    <script src="/firepad/ace/theme-monokai.js"></script>
+    <script src="/firepad/dist/firepad.js"></script> -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="/bower_components/firebase/firebase.js"></script>
+    <script src="/bower_components/angularfire/angularfire.js"></script>
+    <script src="/bower_components/firebase-simple-login/firebase-simple-login.js"></script>
+    <script src="/build/js/firedeck.js"></script>
   </body>
 </html>
