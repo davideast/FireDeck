@@ -10,10 +10,13 @@ Installation
 1. Get a blank Firebase. If you don't have a Firebase, go here and create a blank one.
 2. Clone the repo
 3. Install bower dependencies
-> ```sh
+
+```sh
 $ bower install
 ```
+
 4. Install npm dependencies
+
 ```sh
 $ npm install
 ```
