@@ -14,22 +14,22 @@ Installation
 $ bower install
 ```
 4. Install npm dependencies
-> ```sh
+```sh
 $ npm install
 ```
-5. Change the constant url in the app.js file
-> ```js
+5. Change the constant url in the app.js file 
+```js
   app.constant('FBURL', 'https://<your-firebase>.firebaseio.com/');
   app.constant('SLIDES', 'https://<your-firebase>.firebaseio.com/slides');
   app.constant('CURRENT', 'https://<your-firebase>.firebaseio.com/current');
   app.constant('CODEURL', 'https://<your-firebase>.firebaseio.com/code');
 ```
 6. Build with Gulp.
-> ```sh
+```sh
 $ gulp
 ```
 7. Order the slides, press Ctrl-C to exit after the process has ended.
-> ```sh
+```sh
 $ gulp order-slides
 ```
 8. If you want to be the only person to control the slides, go into your Firebase dashboard, and click on the Simple Login Tab. Enable Email/Passsword Authentication. Add a user in the dashboard. If you do not want to be the only person controlling to the slides or for the slides to not change globally see **Appendix Slide Control**.
