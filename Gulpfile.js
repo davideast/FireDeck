@@ -22,10 +22,20 @@ server.use(livereload({
   port: livereloadport
 }));
 
+
 var paths = {
   buildDir: 'build/',
   scripts: {
     app: [
+      'bower_components/jquery/dist/jquery.js',
+      'bower_components/firebase/firebase.js',
+      'bower_components/firebase-simple-login/firebase-simple-login.js',
+      'bower_components/angular/angular.js',
+      'bower_components/angular-route/angular-route.js',
+      'bower_components/angular-animate/angular-animate.js',
+      'bower_components/angular-sanitize/angular-sanitize.js',
+      'bower_components/angular-cookies/angular-cookies.js',
+      'bower_components/angularfire/angularfire.js',
       'scripts/app.js',
       'scripts/controllers/*.js',
       'scripts/directives/*.js',
@@ -37,6 +47,21 @@ var paths = {
     minified: 'firedeck.min.js',
     buildDir: 'build/js/',
   },
+
+  ngHack: {
+    app: [
+      'bower_components/jquery/dist/jquery.js',
+      'bower_components/firebase/firebase.js',
+      'bower_components/angular/angular.js',
+      'bower_components/angular-animate/angular-animate.js',
+      'bower_components/angular-sanitize/angular-sanitize.js',
+      'bower_components/angularfire/angularfire.js',
+      'code/ngHack.js'
+    ],
+    unminified: 'ngHack.js',
+    buildDir: 'build/js'
+  },
+
   styles: {
     src: 'styles',
     files: 'styles/*.scss',
@@ -44,13 +69,6 @@ var paths = {
   }
 
 };
-
-gulp.task('lint', function(){
-  return gulp.src(paths.scripts.app)
-    .pipe(jshint('.jshintrc'))
-    .pipe(jshint.reporter('default'));
-    //.pipe(notify({ message: 'Lint task complete' }));
-});
 
 gulp.task('concat', function(){
   return gulp.src(paths.scripts.app)
@@ -68,7 +86,6 @@ gulp.task('preMin', ['minify'],function(){
   return gulp.src(paths.scripts.buildDir + paths.scripts.minified)
     .pipe(min())
     .pipe(gulp.dest(paths.scripts.buildDir));
-    //.pipe(notify({ message: 'Min done' }));
 });
 
 gulp.task('uglify', ['preMin'],function(){
@@ -76,6 +93,12 @@ gulp.task('uglify', ['preMin'],function(){
    .pipe(uglify())
    .pipe(gulp.dest(paths.scripts.buildDir))
    .pipe(notify({ message: 'Build Done' }));
+});
+
+gulp.task('ngHack', function() {
+  return gulp.src(paths.ngHack.app)
+    .pipe(concat(paths.ngHack.unminified))
+    .pipe(gulp.dest(paths.ngHack.buildDir));
 });
 
 gulp.task('watch', function() {
@@ -92,19 +115,6 @@ gulp.task('styles', function () {
     }))
     .pipe(gulp.dest(paths.styles.dest));
 });
-
-/* Uses the Karma test runner to run the Jasmine tests
-gulp.task('test', function() {
-  return gulp.src(paths.tests)
-    .pipe(karma({
-      configFile: 'karma.conf.js',
-      action: 'run'
-    }))
-    .on('error', function(err) {
-      throw err;
-    });
-});
-*/
 
 gulp.task('reload', function(){
   gulp.src(paths.buildDir + '/**/*')
@@ -202,7 +212,7 @@ gulp.task('order-slides', function() {
 
 });
 
-gulp.task('build', ['lint', 'concat', 'uglify', 'styles']);
+gulp.task('build', ['concat', 'uglify', 'styles', 'ngHack']);
 
 gulp.task('serve', ['build', 'server', 'watch']);
 
