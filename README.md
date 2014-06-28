@@ -7,6 +7,8 @@ powered by Firebase and Angular.
 If you're looking to give a presentation on Firebase and want to amaze the
 audience and leave them speechless, then look no further.
 
+[Demo site](https://fire-deck.firebaseapp.com/#/slide/intro)
+
 Installation
 --------------
 1) Get a blank Firebase. If you don't have a Firebase, go here and create a blank one.
